@@ -9,3 +9,5 @@ Usuwanie po numerze indeksu
 
 Walidacja czy numer PESEL jest poprawny Wiki - poprawność PESEL (trudne)
 Wczytywanie z pliku i zapisywanie całej bazy w pliku (trudne)
+
+nowa linia 2 konto
