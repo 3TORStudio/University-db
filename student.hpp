@@ -25,7 +25,5 @@ public:
     struct addres getAddress(); 
     std::string const indexNumber();
     std::string const getPESEL();
-    std::string const getSex();
-    
-    
+    std::string const getSex();    
 };
