@@ -14,7 +14,18 @@ class Student{
     std::string indexNumber;
     std::string PESEL;
     std::string sex;
+    bool isPeselCorrect(std::string);
 public:
-    Student add(Student);
+    Student (std::string, std::string, std::string,
+             std::string, std::string, std::string,
+             std::string, std::string, std::string);
+    
+    std::string const getName();
+    std::string const getSurame();
+    struct addres getAddress(); 
+    std::string const indexNumber();
+    std::string const getPESEL();
+    std::string const getSex();
+    
     
 };
