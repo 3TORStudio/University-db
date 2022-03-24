@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 
-using universityDb = std::vector<std::shared_ptr<Student>>;
+using universityDb = std::vector<std::shared_ptr<Student> >;
 
 class University
 {
@@ -13,7 +13,7 @@ public:
 
     void add(std::shared_ptr<Student>);
 
-    void const printDb();
+    // void const printDb();
 
     Student const findByName();
 

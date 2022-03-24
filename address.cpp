@@ -9,3 +9,4 @@ Address::Address(std::string street,
                 , postalCode_(postalCode)
                 , town_(town)
     {}
+std::string Address::getStreet(){return street_;}

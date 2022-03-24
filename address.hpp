@@ -12,4 +12,6 @@ public:
             std::string houseNumber,
             std::string postalCode,
             std::string town);
+    
+    std::string getStreet();
 };

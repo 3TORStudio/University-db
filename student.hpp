@@ -21,7 +21,7 @@ public:
     
     std::string const getName();
     std::string const getSurame();
-    Address getAddress(); 
+    std::shared_ptr<Address> getAddress(); 
     std::string const indexNumber();
     std::string const getPESEL();
     std::string const getSex();    
