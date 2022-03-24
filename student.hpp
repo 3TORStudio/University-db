@@ -25,4 +25,13 @@ public:
     std::string const indexNumber();
     std::string const getPESEL();
     std::string const getSex();    
+
+    void setName(std::string name);
+    void setSurname(std::string surname);
+    void setIndexNumber(std::string indexNumber);
+    void setPESEL(std::string PESEL);
+    void setSex(std::string sex);
+    void setAddress(std::shared_ptr<Address> address);
+
+    void printStudent();
 };

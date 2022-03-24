@@ -9,4 +9,7 @@ Address::Address(std::string street,
                 , postalCode_(postalCode)
                 , town_(town)
     {}
-std::string Address::getStreet(){return street_;}
+std::string const Address::getStreet(){return street_;}
+std::string const Address::getHouseNumber(){return houseNumber_;}
+std::string const Address::getPostalCode(){return postalCode_;}
+std::string const Address::getTown(){return town_;}

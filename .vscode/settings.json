@@ -73,5 +73,7 @@
         "ratio": "cpp",
         "variant": "cpp",
         "__functional_base": "cpp"
-    }
+    },
+    "editor.fontSize": 13,
+    "editor.minimap.enabled": false
 }

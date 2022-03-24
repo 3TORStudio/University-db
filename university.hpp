@@ -7,13 +7,14 @@ using universityDb = std::vector<std::shared_ptr<Student> >;
 
 class University
 {
-    universityDb studentsDb;
+    std::string name_;
+    universityDb studentsDb_;
 public:
-    //friend class student;
+    University(std::string name);
 
     void add(std::shared_ptr<Student>);
 
-    // void const printDb();
+    void printDb();
 
     Student const findByName();
 

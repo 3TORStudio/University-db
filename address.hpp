@@ -13,5 +13,9 @@ public:
             std::string postalCode,
             std::string town);
     
-    std::string getStreet();
+    std::string const getStreet();
+    std::string const getHouseNumber();
+    std::string const getPostalCode();
+    std::string const getTown();
+
 };
