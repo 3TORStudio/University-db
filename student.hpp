@@ -1,28 +1,27 @@
 #pragma once
-
+#include "address.hpp"
 #include <string>
-class Student{
-    std::string name;
-    std::string surname;
-    struct address 
-    {
-        std::string street;
-        std::string houseNumber;
-        std::string postalCode;
-        std::string town;
-    };
-    std::string indexNumber;
-    std::string PESEL;
-    std::string sex;
+#include <memory>
+
+class Student {
+    std::string name_;
+    std::string surname_;
+    std::string indexNumber_;
+    std::string PESEL_;
+    std::string sex_;
+    std::shared_ptr<Address> address_;
     bool isPeselCorrect(std::string);
 public:
-    Student (std::string, std::string, std::string,
-             std::string, std::string, std::string,
-             std::string, std::string, std::string);
+    Student (std::string name,
+            std::string surname,
+            std::shared_ptr<Address> address,
+            std::string indexNumber,
+            std::string PESEL,
+            std::string sex);
     
     std::string const getName();
     std::string const getSurame();
-    struct addres getAddress(); 
+    Address getAddress(); 
     std::string const indexNumber();
     std::string const getPESEL();
     std::string const getSex();    
