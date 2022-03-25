@@ -20,9 +20,9 @@ public:
             std::string sex);
     
     std::string const getName();
-    std::string const getSurame();
+    std::string const getSurname();
     std::shared_ptr<Address> getAddress(); 
-    std::string const indexNumber();
+    std::string const getIndexNumber();
     std::string const getPESEL();
     std::string const getSex();    
 

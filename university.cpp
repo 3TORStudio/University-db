@@ -19,19 +19,10 @@ void University::add(std::shared_ptr<Student> student){
 }
 
 void University::printDb(){  
-   std::for_each(studentsDb_.begin(),
+   std::for_each(std::next(studentsDb_.begin()),
                  studentsDb_.end(),
                  [](auto e){e->printStudent();});                
 }
-
-// void University::findByNameTest(std::string name){
-//    auto result = std::find_if(studentsDb_.begin(),
-//                   studentsDb_.end(),
-//                   [name](auto stud){return stud->getName() == name;});
-//    (result != studentsDb_.end())
-//       ? std::cout << "There is a student\n"
-//       : std::cout << "There is no that name in Un-base.\n";
-// }
 
 studentDb const University::findByName(std::string name){
    auto result = std::find_if(studentsDb_.begin(),
@@ -49,4 +40,29 @@ studentDb const University::findByPESEL(std::string PESEL){
    if (result == studentsDb_.end())
       return studentsDb_.front();
    return *result;
+}
+
+universityDb & University::sortByName(){
+   auto comp = [](auto firstStudent, auto secondStudent){
+      return firstStudent->getSurname() < secondStudent->getSurname();
+   };
+   std::sort(std::next(studentsDb_.begin()), studentsDb_.end(), comp);
+   return studentsDb_;
+}
+
+universityDb & University::sortByPESEL(){
+   auto comp = [](auto firstStudent, auto secondStudent){
+      return firstStudent->getPESEL() < secondStudent->getPESEL();
+   };
+   std::sort(std::next(studentsDb_.begin()), studentsDb_.end(), comp);
+   return studentsDb_;
+}
+
+universityDb & University::deleteById(std::string index){
+   auto deletedStudent = 
+      std::remove_if(std::next(studentsDb_.begin()),
+                     studentsDb_.end(),
+                     [index](auto student){return student->getIndexNumber() == index;});
+   studentsDb_.erase(deletedStudent, studentsDb_.end());
+   return studentsDb_;
 }

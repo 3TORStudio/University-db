@@ -17,16 +17,16 @@ public:
 
     void printDb(); //ok
 
-    // void findByNameTest(std::string name);
-    studentDb const findByName(std::string name);
+    
+    studentDb const findByName(std::string name); //ok
 
-    studentDb const findByPESEL(std::string PESEL);
+    studentDb const findByPESEL(std::string PESEL); //ok
 
-    universityDb &sortByName();
+    universityDb & sortByName(); //ok
 
-    universityDb &sortByPESEL();
+    universityDb &sortByPESEL(); //ok
 
-    universityDb &deleteById(std::shared_ptr<Student>);
+    universityDb &deleteById(std::string index);
 
     void pToF();
 
