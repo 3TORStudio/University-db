@@ -17,10 +17,10 @@ public:
 
     void printDb(); //ok
 
-    void findByNameTest(std::string name);
+    // void findByNameTest(std::string name);
     studentDb const findByName(std::string name);
 
-    Student const findByPESEL();
+    studentDb const findByPESEL(std::string PESEL);
 
     universityDb &sortByName();
 

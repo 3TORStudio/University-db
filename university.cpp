@@ -24,19 +24,28 @@ void University::printDb(){
                  [](auto e){e->printStudent();});                
 }
 
-void University::findByNameTest(std::string name){
-   auto result = std::find_if(studentsDb_.begin(),
-                  studentsDb_.end(),
-                  [name](auto stud){return stud->getName() == name;});
-   (result != studentsDb_.end())
-      ? std::cout << "There is a student\n"
-      : std::cout << "There is no that name in Un-base.\n";
-}
+// void University::findByNameTest(std::string name){
+//    auto result = std::find_if(studentsDb_.begin(),
+//                   studentsDb_.end(),
+//                   [name](auto stud){return stud->getName() == name;});
+//    (result != studentsDb_.end())
+//       ? std::cout << "There is a student\n"
+//       : std::cout << "There is no that name in Un-base.\n";
+// }
 
 studentDb const University::findByName(std::string name){
    auto result = std::find_if(studentsDb_.begin(),
                   studentsDb_.end(),
                   [name](auto student){return student->getName() == name;});
+   if (result == studentsDb_.end())
+      return studentsDb_.front();
+   return *result;
+}
+
+studentDb const University::findByPESEL(std::string PESEL){
+   auto result = std::find_if(studentsDb_.begin(),
+                  studentsDb_.end(),
+                  [PESEL](auto student){return student->getPESEL() == PESEL;});
    if (result == studentsDb_.end())
       return studentsDb_.front();
    return *result;

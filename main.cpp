@@ -8,12 +8,12 @@ int main()
                "b",
                std::make_shared<Address>("c","d","e","f"),
                "g",
-               "h",
+               "y",
                "i");
    Student s2("jeden",
                "b",
                std::make_shared<Address>("c","d","e","f"),
-               "g",
+               "z",
                "h",
                "i");
    University u("lo");
@@ -21,7 +21,7 @@ int main()
    u.add(std::make_shared<Student>(s2));
    // u.printDb();
 
-   auto s3 = u.findByName("jeden");
+   auto s3 = u.findByPESEL("y");
 
    s3->printStudent();
    return 0;
