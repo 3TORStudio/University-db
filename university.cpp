@@ -1,7 +1,6 @@
 #include "university.hpp"
-#include <algorithm>
-#include <iterator>
-#include <iostream>
+
+
 // #include <memory>
 
 University::University(std::string name): name_(name){
@@ -9,7 +8,7 @@ University::University(std::string name): name_(name){
              "-",
              std::make_shared<Address>("-","-","-","-"),
              "-",
-             "-",
+             "78040602656",
              "-");
    studentsDb_.push_back(std::make_shared<Student>(s));
 }
@@ -76,4 +75,22 @@ universityDb & University::deleteById(std::string index){
                      [index](auto student){return student->getIndexNumber() == index;});
    studentsDb_.erase(deletedStudent, studentsDb_.end());
    return studentsDb_;
+}
+
+void University::pToF(){
+   std::ofstream output("UniversityDataBase.txt");
+   if (output.fail()){
+      std::cerr << "Error!!!";
+   }
+   for(const auto  & e: studentsDb_){
+      output << e->getIndexNumber() << ' '
+             << e->getName() << ' '
+             << e->getSurname() << ' '
+             << e->getPESEL() << ' '
+             << e->getSex() << ' '
+             << e->getAddress()->getStreet() << ' '
+             << e->getAddress()->getHouseNumber() << ' '
+             << e->getAddress()->getPostalCode() << ' '
+             << e->getAddress()->getTown() << '\n';
+   }
 }

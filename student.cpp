@@ -1,6 +1,4 @@
 #include "student.hpp"
-#include <iostream>
-//#include "address.hpp"
 
 Student::Student(std::string name,
                  std::string surname,
@@ -8,8 +6,19 @@ Student::Student(std::string name,
                  std::string indexNumber,
                  std::string PESEL,
                  std::string sex)
-    : name_(name), surname_(surname), indexNumber_(indexNumber), PESEL_(PESEL), sex_(sex), address_(addres)
+                : name_(name)
+                , surname_(surname)
+                , indexNumber_(indexNumber)
+                , sex_(sex)
+                , address_(addres)
 {
+    if (!isPeselCorrect(PESEL)){
+        std::cerr << "PESEL incorect!\n";
+        PESEL_ = "00000000000";
+    }
+    else{
+        PESEL_ = PESEL;
+    }
 }
 
 std::string const Student::getName() { return name_; }
@@ -40,4 +49,28 @@ void Student::printStudent(){
     std::cout << address_->getStreet() << ' ' << address_->getHouseNumber() << '\n';
     std::cout << address_->getPostalCode() << ' ' << address_->getTown() << '\n';
     std::cout << std::string(20,'-') << '\n';;
+}
+
+bool Student::isPeselCorrect(std::string pesel){
+    if(pesel.size() != 11){
+        return false;
+    }
+    if(std::any_of(pesel.begin(),pesel.end(),[](char const c){return !isdigit(c);})){
+        return false;
+    }
+    unsigned s = pesel[0] -'0'
+               + (pesel[1] - '0') * 3
+               + (pesel[2] - '0') * 7
+               + (pesel[3] - '0') * 9
+               + pesel[4] -'0'
+               + (pesel[5] - '0') * 3
+               + (pesel[6] - '0') * 7
+               + (pesel[7] - '0') * 9
+               + pesel[8] -'0'
+               + (pesel[9] - '0') * 3
+               + pesel[10] -'0';
+    if (s % 10){
+        return false;
+    }
+    return true;
 }

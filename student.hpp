@@ -1,7 +1,11 @@
 #pragma once
 #include "address.hpp"
-#include <string>
+#include <algorithm>
+#include <cctype>
+#include <iostream>
 #include <memory>
+#include <string>
+
 
 class Student {
     std::string name_;

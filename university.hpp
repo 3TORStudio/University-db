@@ -1,6 +1,10 @@
 #pragma once
 #include "student.hpp"
+#include <algorithm>
+#include <fstream>
 #include <memory>
+#include <iostream>
+#include <iterator>
 #include <vector>
 
 using studentDb = std::shared_ptr<Student>;
@@ -18,7 +22,6 @@ public:
 
     void printDb(); //ok
 
-    
     studentDb const findByName(std::string name); //ok
 
     studentDb const findByPESEL(std::string PESEL); //ok

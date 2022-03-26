@@ -22,7 +22,7 @@ int main()
    std::cout << "\nFind by pesel:\n";
    auto s3 = u.findByPESEL("y");
    std::cout << s3->getName() <<'\n';
-   std::cout << std::string(20,'-');
+   std::cout << std::string(20,'-') << '\n';
 
    std::cout << "Befor sorting\n";
    u.printDb();
@@ -35,5 +35,6 @@ int main()
    u.deleteById("111B");
    std::cout << "After deleting\n";
    u.printDb();
+   u.pToF();
    return 0;
 }
