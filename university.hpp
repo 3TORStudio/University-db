@@ -13,7 +13,8 @@ class University
 public:
     University(std::string name);
 
-    void add(std::shared_ptr<Student>); //ok
+    void add(std::shared_ptr<Student> student); //ok
+    void add();
 
     void printDb(); //ok
 

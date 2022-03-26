@@ -18,6 +18,17 @@ void University::add(std::shared_ptr<Student> student){
    studentsDb_.push_back(student);
 }
 
+void University::add(){
+   Student s("Zwirek",
+               "Muchomorek",
+               std::make_shared<Address>("Bagienna","1","77-111","Brzezina"),
+               "111A",
+               "78040602656",
+               "M");
+   
+   studentsDb_.push_back(std::make_shared<Student>(s));
+}
+
 void University::printDb(){  
    std::for_each(std::next(studentsDb_.begin()),
                  studentsDb_.end(),
@@ -34,7 +45,7 @@ studentDb const University::findByName(std::string name){
 }
 
 studentDb const University::findByPESEL(std::string PESEL){
-   auto result = std::find_if(studentsDb_.begin(),
+   auto result = std::find_if(std::next(studentsDb_.begin()),
                   studentsDb_.end(),
                   [PESEL](auto student){return student->getPESEL() == PESEL;});
    if (result == studentsDb_.end())

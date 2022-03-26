@@ -10,7 +10,7 @@ class Student {
     std::string PESEL_;
     std::string sex_;
     std::shared_ptr<Address> address_;
-    bool isPeselCorrect(std::string);
+    static bool isPeselCorrect(std::string);
 public:
     Student (std::string name,
             std::string surname,
