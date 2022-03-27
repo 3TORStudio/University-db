@@ -5,7 +5,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
-
+#include <sstream>
 
 class Student {
     std::string name_;
@@ -15,6 +15,7 @@ class Student {
     std::string sex_;
     std::shared_ptr<Address> address_;
     static bool isPeselCorrect(std::string);
+    // const static unsigned numOfDatabaseValues = 9;
 public:
     Student (std::string name,
             std::string surname,

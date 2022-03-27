@@ -4,12 +4,6 @@
 
 int main()
 {
-   // Student s2("jeden",
-   //             "aab",
-   //             std::make_shared<Address>("c","d","e","f"),
-   //             "z",
-   //             "z",
-   //             "i");
    University u("lo");
    u.add();
    u.add(std::make_shared<Student>("Mis",
@@ -32,9 +26,12 @@ int main()
    std::cout << "After sort by PESEL\n";
    u.sortByPESEL();
    u.printDb();
-   u.deleteById("111B");
+    u.deleteById("111B");
    std::cout << "After deleting\n";
    u.printDb();
    u.pToF();
+   std::cout << "After reading from file\n";
+   u.rFromF();
+   u.printDb();
    return 0;
 }

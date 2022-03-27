@@ -17,22 +17,15 @@ class University
 public:
     University(std::string name);
 
-    void add(std::shared_ptr<Student> student); //ok
+    void add(std::shared_ptr<Student> student);
     void add();
 
     void printDb(); //ok
-
-    studentDb const findByName(std::string name); //ok
-
-    studentDb const findByPESEL(std::string PESEL); //ok
-
+    studentDb const findByName(std::string name);
+    studentDb const findByPESEL(std::string PESEL);
     universityDb & sortByName(); //ok
-
     universityDb &sortByPESEL(); //ok
-
     universityDb &deleteById(std::string index);
-
-    void pToF();
-
-    universityDb rFromF();
+    bool pToF();
+    bool rFromF();
 };

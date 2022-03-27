@@ -8,7 +8,7 @@ University::University(std::string name): name_(name){
              "-",
              std::make_shared<Address>("-","-","-","-"),
              "-",
-             "78040602656",
+             "00000000000",
              "-");
    studentsDb_.push_back(std::make_shared<Student>(s));
 }
@@ -77,20 +77,57 @@ universityDb & University::deleteById(std::string index){
    return studentsDb_;
 }
 
-void University::pToF(){
+bool University::pToF(){
    std::ofstream output("UniversityDataBase.txt");
    if (output.fail()){
       std::cerr << "Error!!!";
+      return false;
    }
    for(const auto  & e: studentsDb_){
-      output << e->getIndexNumber() << ' '
-             << e->getName() << ' '
-             << e->getSurname() << ' '
-             << e->getPESEL() << ' '
-             << e->getSex() << ' '
-             << e->getAddress()->getStreet() << ' '
-             << e->getAddress()->getHouseNumber() << ' '
-             << e->getAddress()->getPostalCode() << ' '
-             << e->getAddress()->getTown() << '\n';
+      output << e->getIndexNumber() << ';'
+             << e->getName() << ';'
+             << e->getSurname() << ';'
+             << e->getPESEL() << ';'
+             << e->getSex() << ';'
+             << e->getAddress()->getStreet() << ';'
+             << e->getAddress()->getHouseNumber() << ';'
+             << e->getAddress()->getPostalCode() << ';'
+             << e->getAddress()->getTown() << ';' << '\n';
    }
+   return true;
+}
+
+bool University::rFromF(){
+   std::ifstream input("UniversityDataBase.txt");
+   if (!input.is_open()){
+      std::cerr << "Error!!!";
+      return false;
+   }  
+   studentsDb_.clear();
+   std::string line;
+
+   std::vector <std::string> vData;
+   while(std::getline(input,line)){
+      std::string temp;
+      for(const auto &e: line){        
+         if(e == ';'){
+            vData.push_back(temp);
+            temp.clear();
+            continue;
+         }
+         temp += e;
+      }
+      this->add(std::make_shared<Student>(vData[1],
+                                          vData[2],
+                                          std::make_shared<Address>(vData[5],
+                                                                     vData[6],
+                                                                     vData[7],
+                                                                     vData[8]),
+                                          vData[0],
+                                          vData[3],
+                                          vData[4]));
+      vData.clear();
+   } 
+   return true;
+
 }

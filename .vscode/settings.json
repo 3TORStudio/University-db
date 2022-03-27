@@ -72,7 +72,9 @@
         "mutex": "cpp",
         "ratio": "cpp",
         "variant": "cpp",
-        "__functional_base": "cpp"
+        "__functional_base": "cpp",
+        "iomanip": "cpp",
+        "stack": "cpp"
     },
     "editor.fontSize": 13,
     "editor.minimap.enabled": false
