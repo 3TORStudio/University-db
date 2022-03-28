@@ -1,31 +1,31 @@
 #pragma once
 #include "student.hpp"
+#include <algorithm>
+#include <fstream>
 #include <memory>
+#include <iostream>
+#include <iterator>
 #include <vector>
 
-using universityDb = std::vector<std::shared_ptr<Student>>;
+using studentDb = std::shared_ptr<Student>;
+using universityDb = std::vector<studentDb>;
 
 class University
 {
-    universityDb studentsDb;
+    std::string name_;
+    universityDb studentsDb_;
 public:
-    //friend class student;
+    University(std::string name);
 
-    void add(std::shared_ptr<Student>);
+    bool add(std::shared_ptr<Student> student);
+    bool add();
 
-    void const printDb();
-
-    Student const findByName();
-
-    Student const findByPESEL();
-
-    universityDb &sortByName();
-
-    universityDb &sortByPESEL();
-
-    universityDb &deleteById(std::shared_ptr<Student>);
-
-    void pToF();
-
-    universityDb rFromF();
+    void printDb();
+    studentDb const findByName(const std::string & name);
+    studentDb const findByPESEL(const std::string & PESEL);
+    universityDb & sortByName();
+    universityDb & sortByPESEL();
+    universityDb & deleteById(std::string index);
+    bool pToF();
+    bool rFromF();
 };
