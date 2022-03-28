@@ -1,8 +1,5 @@
 #include "university.hpp"
 
-
-// #include <memory>
-
 University::University(std::string name): name_(name){
    Student s("No exist",
              "-",
@@ -13,28 +10,30 @@ University::University(std::string name): name_(name){
    studentsDb_.push_back(std::make_shared<Student>(s));
 }
 
-void University::add(std::shared_ptr<Student> student){
+bool University::add(std::shared_ptr<Student> student){
    studentsDb_.push_back(student);
+   return true;
 }
 
-void University::add(){
+bool University::add(){
    Student s("Zwirek",
-               "Muchomorek",
-               std::make_shared<Address>("Bagienna","1","77-111","Brzezina"),
-               "111A",
-               "78040602656",
-               "M");
+             "Muchomorek",
+             std::make_shared<Address>("Bagienna","1","77-111","Brzezina"),
+             "111A",
+             "78040602656",
+             "M");
    
    studentsDb_.push_back(std::make_shared<Student>(s));
+   return true;
 }
 
-void University::printDb(){  
+void  University::printDb(){  
    std::for_each(std::next(studentsDb_.begin()),
                  studentsDb_.end(),
                  [](auto e){e->printStudent();});                
 }
 
-studentDb const University::findByName(std::string name){
+studentDb const University::findByName(const std::string  & name){
    auto result = std::find_if(studentsDb_.begin(),
                   studentsDb_.end(),
                   [name](auto student){return student->getName() == name;});
@@ -43,7 +42,7 @@ studentDb const University::findByName(std::string name){
    return *result;
 }
 
-studentDb const University::findByPESEL(std::string PESEL){
+studentDb const University::findByPESEL(const std::string & PESEL){
    auto result = std::find_if(std::next(studentsDb_.begin()),
                   studentsDb_.end(),
                   [PESEL](auto student){return student->getPESEL() == PESEL;});
@@ -78,6 +77,10 @@ universityDb & University::deleteById(std::string index){
 }
 
 bool University::pToF(){
+   if(studentsDb_.size() == 1){
+      std::cerr << "Database is empty!\n";
+      return false;
+   }
    std::ofstream output("UniversityDataBase.txt");
    if (output.fail()){
       std::cerr << "Error!!!";
@@ -129,5 +132,4 @@ bool University::rFromF(){
       vData.clear();
    } 
    return true;
-
 }
