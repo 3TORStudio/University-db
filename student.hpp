@@ -7,9 +7,9 @@ class Student: public Person {
 public:
     Student (std::string name,
             std::string surname,
-            std::string PESEL,
             std::string sex,
             std::shared_ptr<Address> address,
+            std::string PESEL,
             std::string indexNumber);
 
     std::string const getIndexNumber();

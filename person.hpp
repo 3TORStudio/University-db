@@ -9,21 +9,20 @@
 class Person{
    std::string name_;
    std::string surname_;
-   std::string PESEL_;
    std::string sex_;
    std::shared_ptr<Address> address_;
-   std::string salary_;
+   std::string PESEL_;
 protected:
    static bool isPeselCorrect(std::string);
 public:
    Person(std::string name,
           std::string surname,
-          std::string PESEL,
           std::string sex,
-          std::shared_ptr<Address> address);
+          std::shared_ptr<Address> address,
+          std::string PESEL);
+   
    std::string const getName();
    std::string const getSurname();
-   std::string const getSalary();
    std::shared_ptr<Address> getAddress(); 
    
    std::string const getPESEL();
@@ -34,5 +33,4 @@ public:
    void setPESEL(std::string PESEL);
    void setSex(std::string sex);
    void setAddress(std::shared_ptr<Address> address);
-   void setSalary(std::string salary);
 };

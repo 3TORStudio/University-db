@@ -2,9 +2,9 @@
 
 Person::Person(std::string name,
           std::string surname,
-          std::string PESEL,
           std::string sex,
-          std::shared_ptr<Address> address)
+          std::shared_ptr<Address> address,
+          std::string PESEL)
           : name_(name)
           , surname_(surname)
           , sex_(sex)
@@ -25,14 +25,13 @@ std::string const Person::getSurname() { return surname_; }
 std::shared_ptr<Address> Person::getAddress() { return address_; }
 std::string const Person::getPESEL() { return PESEL_; }
 std::string const Person::getSex() { return sex_; }
-std::string const Person::getSalary() { return salary_;}
+
 
 void Person::setName(std::string name){name_ = name;}
 void Person::setSurname(std::string surname){surname_ = surname;}
 void Person::setPESEL(std::string PESEL){PESEL_ = PESEL;}
 void Person::setSex(std::string sex){sex_ = sex;}
 void Person::setAddress(std::shared_ptr<Address> address){address_ = address;}
-void Person::setSalary(std::string salary) {salary_ = salary;}
 bool Person::isPeselCorrect(std::string pesel){
     if(pesel.size() != 11){
         return false;

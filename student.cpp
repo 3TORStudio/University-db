@@ -4,11 +4,11 @@
 
 Student::Student(std::string name,
                  std::string surname,
-                 std::string PESEL,
                  std::string sex,
                  std::shared_ptr<Address> address,
+                 std::string PESEL,
                  std::string indexNumber)
-                : Person(name, surname, PESEL, sex, address)
+                : Person(name, surname, sex, address, PESEL)
                 , indexNumber_(indexNumber)
     { }
 

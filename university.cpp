@@ -3,9 +3,9 @@
 University::University(std::string name): name_(name){
    Student s("No exist",
              "-",
-             "00000000000",
              "-",
              std::make_shared<Address>("-","-","-","-"),
+             "00000000000",
              "-");
    studentsDb_.push_back(std::make_shared<Student>(s));
 }
@@ -18,9 +18,9 @@ bool University::add(std::shared_ptr<Student> student){
 bool University::add(){
    Student s("Zwirek",
              "Muchomorek",
-             "78040602656",
              "M",
              std::make_shared<Address>("Bagienna","1","77-111","Brzezina"),
+             "78040602656",
              "111A");
    
    studentsDb_.push_back(std::make_shared<Student>(s));
@@ -67,69 +67,69 @@ universityDb & University::sortByPESEL(){
    return studentsDb_;
 }
 
-universityDb & University::deleteById(std::string index){
-   auto deletedStudent = 
-      std::remove_if(std::next(studentsDb_.begin()),
-                     studentsDb_.end(),
-                     [index](auto student){return student->getIndexNumber() == index;});
-   studentsDb_.erase(deletedStudent, studentsDb_.end());
-   return studentsDb_;
-}
+// universityDb & University::deleteById(std::string index){
+//    auto deletedStudent = 
+//       std::remove_if(std::next(studentsDb_.begin()),
+//                      studentsDb_.end(),
+//                      [index](auto student){return student->getIndexNumber() == index;});
+//    studentsDb_.erase(deletedStudent, studentsDb_.end());
+//    return studentsDb_;
+// }
 
-bool University::pToF(){
-   if(studentsDb_.size() == 1){
-      std::cerr << "Database is empty!\n";
-      return false;
-   }
-   std::ofstream output("UniversityDataBase.txt");
-   if (output.fail()){
-      std::cerr << "Error!!!";
-      return false;
-   }
-   for(const auto  & e: studentsDb_){
-      output << e->getIndexNumber() << ';'
-             << e->getName() << ';'
-             << e->getSurname() << ';'
-             << e->getPESEL() << ';'
-             << e->getSex() << ';'
-             << e->getAddress()->getStreet() << ';'
-             << e->getAddress()->getHouseNumber() << ';'
-             << e->getAddress()->getPostalCode() << ';'
-             << e->getAddress()->getTown() << ';' << '\n';
-   }
-   return true;
-}
+// bool University::pToF(){
+//    if(studentsDb_.size() == 1){
+//       std::cerr << "Database is empty!\n";
+//       return false;
+//    }
+//    std::ofstream output("UniversityDataBase.txt");
+//    if (output.fail()){
+//       std::cerr << "Error!!!";
+//       return false;
+//    }
+//    for(const auto  & e: studentsDb_){
+//       output << e->getIndexNumber() << ';'
+//              << e->getName() << ';'
+//              << e->getSurname() << ';'
+//              << e->getPESEL() << ';'
+//              << e->getSex() << ';'
+//              << e->getAddress()->getStreet() << ';'
+//              << e->getAddress()->getHouseNumber() << ';'
+//              << e->getAddress()->getPostalCode() << ';'
+//              << e->getAddress()->getTown() << ';' << '\n';
+//    }
+//    return true;
+// }
 
-bool University::rFromF(){
-   std::ifstream input("UniversityDataBase.txt");
-   if (!input.is_open()){
-      std::cerr << "Error!!!";
-      return false;
-   }  
-   studentsDb_.clear();
-   std::string line;
+// bool University::rFromF(){
+//    std::ifstream input("UniversityDataBase.txt");
+//    if (!input.is_open()){
+//       std::cerr << "Error!!!";
+//       return false;
+//    }  
+//    studentsDb_.clear();
+//    std::string line;
 
-   std::vector <std::string> vData;
-   while(std::getline(input,line)){
-      std::string temp;
-      for(const auto &e: line){        
-         if(e == ';'){
-            vData.push_back(temp);
-            temp.clear();
-            continue;
-         }
-         temp += e;
-      }
-      this->add(std::make_shared<Student>(vData[1],
-                                          vData[2],
-                                          std::make_shared<Address>(vData[5],
-                                                                     vData[6],
-                                                                     vData[7],
-                                                                     vData[8]),
-                                          vData[0],
-                                          vData[3],
-                                          vData[4]));
-      vData.clear();
-   } 
-   return true;
-}
+//    std::vector <std::string> vData;
+//    while(std::getline(input,line)){
+//       std::string temp;
+//       for(const auto &e: line){        
+//          if(e == ';'){
+//             vData.push_back(temp);
+//             temp.clear();
+//             continue;
+//          }
+//          temp += e;
+//       }
+//       this->add(std::make_shared<Student>(vData[1],
+//                                           vData[2],
+//                                           std::make_shared<Address>(vData[5],
+//                                                                      vData[6],
+//                                                                      vData[7],
+//                                                                      vData[8]),
+//                                           vData[0],
+//                                           vData[3],
+//                                           vData[4]));
+//       vData.clear();
+//    } 
+//    return true;
+// }
