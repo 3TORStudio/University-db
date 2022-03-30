@@ -1,11 +1,10 @@
-#include "student.hpp"
 #include "university.hpp"
 #include <iostream>
 
 int main()
 {
    //Test1 - University class constructor 
-   University u("University");
+   //University u("University");
    // //Test2a - adding student to database
    // u.add();
    // //Test2b - adding student to database

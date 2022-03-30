@@ -7,9 +7,9 @@ project(University)
 
 set(SRC_LIST
     address.cpp
-    main.cpp
     person.cpp
     student.cpp
+    main.cpp
     university.cpp
 )
 
