@@ -3,9 +3,9 @@
 University::University(std::string name): name_(name){
    Student s("No exist",
              "-",
-             std::make_shared<Address>("-","-","-","-"),
-             "-",
              "00000000000",
+             "-",
+             std::make_shared<Address>("-","-","-","-"),
              "-");
    studentsDb_.push_back(std::make_shared<Student>(s));
 }
@@ -18,10 +18,10 @@ bool University::add(std::shared_ptr<Student> student){
 bool University::add(){
    Student s("Zwirek",
              "Muchomorek",
-             std::make_shared<Address>("Bagienna","1","77-111","Brzezina"),
-             "111A",
              "78040602656",
-             "M");
+             "M",
+             std::make_shared<Address>("Bagienna","1","77-111","Brzezina"),
+             "111A");
    
    studentsDb_.push_back(std::make_shared<Student>(s));
    return true;

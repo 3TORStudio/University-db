@@ -1,4 +1,5 @@
 #pragma once
+#include "person.hpp"
 #include "student.hpp"
 #include <algorithm>
 #include <fstream>
