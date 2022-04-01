@@ -38,14 +38,14 @@ int main()
    u.sortByPESEL();
    u.printDb();
    //Test7 - delete by Id
-   // u.deleteById("111B");
-   // std::cout << "After deleting\n";
-   // u.printDb();
-   // //Test8 - print to file
-   // u.pToF();
-   // std::cout << "After reading from file\n";
-   // //Test9 - print from file
-   // u.rFromF();
-   // u.printDb();
+   u.deleteById("111B");
+   std::cout << "After deleting\n";
+   u.printDb();
+   //Test8 - print to file
+   u.pToF();
+   std::cout << "After reading from file\n";
+   //Test9 - print from file
+   u.rFromF();
+   u.printDb();
    return 0;
 }
