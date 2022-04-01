@@ -7,11 +7,11 @@ University::University(std::string name): name_(name){
              std::make_shared<Address>("-","-","-","-"),
              "00000000000",
              "-");
-   studentsDb_.push_back(std::make_shared<Student>(s));
+   personnelBase_.push_back(std::make_shared<Student>(s));
 }
 
 bool University::add(std::shared_ptr<Student> student){
-   studentsDb_.push_back(student);
+   personnelBase_.push_back(student);
    return true;
 }
 
@@ -23,31 +23,31 @@ bool University::add(){
              "78040602656",
              "111A");
    
-   studentsDb_.push_back(std::make_shared<Student>(s));
+   personnelBase_.push_back(std::make_shared<Student>(s));
    return true;
 }
 
 void  University::printDb(){  
-   std::for_each(std::next(studentsDb_.begin()),
-                 studentsDb_.end(),
+   std::for_each(std::next(personnelBase_.begin()),
+                 personnelBase_.end(),
                  [](auto e){e->printStudent();});                
 }
 
 studentDb const University::findByName(const std::string  & name){
-   auto result = std::find_if(studentsDb_.begin(),
-                  studentsDb_.end(),
+   auto result = std::find_if(personnelBase_.begin(),
+                  personnelBase_.end(),
                   [name](auto student){return student->getName() == name;});
-   if (result == studentsDb_.end())
-      return studentsDb_.front();
+   if (result == personnelBase_.end())
+      return personnelBase_.front();
    return *result;
 }
 
 studentDb const University::findByPESEL(const std::string & PESEL){
-   auto result = std::find_if(std::next(studentsDb_.begin()),
-                  studentsDb_.end(),
+   auto result = std::find_if(std::next(personnelBase_.begin()),
+                  personnelBase_.end(),
                   [PESEL](auto student){return student->getPESEL() == PESEL;});
-   if (result == studentsDb_.end())
-      return studentsDb_.front();
+   if (result == personnelBase_.end())
+      return personnelBase_.front();
    return *result;
 }
 
@@ -55,29 +55,29 @@ universityDb & University::sortByName(){
    auto comp = [](auto firstStudent, auto secondStudent){
       return firstStudent->getSurname() < secondStudent->getSurname();
    };
-   std::sort(std::next(studentsDb_.begin()), studentsDb_.end(), comp);
-   return studentsDb_;
+   std::sort(std::next(personnelBase_.begin()), personnelBase_.end(), comp);
+   return personnelBase_;
 }
 
 universityDb & University::sortByPESEL(){
    auto comp = [](auto firstStudent, auto secondStudent){
       return firstStudent->getPESEL() < secondStudent->getPESEL();
    };
-   std::sort(std::next(studentsDb_.begin()), studentsDb_.end(), comp);
-   return studentsDb_;
+   std::sort(std::next(personnelBase_.begin()), personnelBase_.end(), comp);
+   return personnelBase_;
 }
 
 universityDb & University::deleteById(std::string index){
    auto deletedStudent = 
-      std::remove_if(std::next(studentsDb_.begin()),
-                     studentsDb_.end(),
+      std::remove_if(std::next(personnelBase_.begin()),
+                     personnelBase_.end(),
                      [index](auto student){return student->getIndexNumber() == index;});
-   studentsDb_.erase(deletedStudent, studentsDb_.end());
-   return studentsDb_;
+   personnelBase_.erase(deletedStudent, personnelBase_.end());
+   return personnelBase_;
 }
 
 bool University::pToF(){
-   if(studentsDb_.size() == 1){
+   if(personnelBase_.size() == 1){
       std::cerr << "Database is empty!\n";
       return false;
    }
@@ -86,7 +86,7 @@ bool University::pToF(){
       std::cerr << "Error!!!";
       return false;
    }
-   for(const auto  & e: studentsDb_){
+   for(const auto  & e: personnelBase_){
       output << e->getName() << ';'
              << e->getSurname() << ';'
              << e->getSex() << ';'
@@ -106,7 +106,7 @@ bool University::rFromF(){
       std::cerr << "Error!!!";
       return false;
    }  
-   studentsDb_.clear();
+   personnelBase_.clear();
    std::string line;
 
    std::vector <std::string> vData;

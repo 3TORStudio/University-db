@@ -24,7 +24,8 @@ public:
    std::string const getName();
    std::string const getSurname();
    std::shared_ptr<Address> getAddress(); 
-   
+   virtual std::string getIndexNumber() const = 0;
+   virtual std::string getSalary() const = 0;
    std::string const getPESEL();
    std::string const getSex();    
    
@@ -33,4 +34,10 @@ public:
    void setPESEL(std::string PESEL);
    void setSex(std::string sex);
    void setAddress(std::shared_ptr<Address> address);
+   virtual void setIndexNumber(std::string indexNumber) = 0;
+   virtual void setSalary(std::string salary) = 0;
+
+   virtual void printPerson() = 0;
+   
+   virtual ~Person();
 };

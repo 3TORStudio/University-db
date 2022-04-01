@@ -1,28 +1,27 @@
 #include "person.hpp"
 #include "address.hpp"
-#include "student.hpp"
+#include "employee.hpp"
 
-Student::Student(std::string name,
+Employee::Employee(std::string name,
                  std::string surname,
                  std::string sex,
                  std::shared_ptr<Address> address,
                  std::string PESEL,
-                 std::string indexNumber)
+                 std::string salary)
                 : Person(name, surname, sex, address, PESEL)
-                , indexNumber_(indexNumber)
+                , salary_(salary)
     { }
 
-std::string  Student::getIndexNumber() const { return indexNumber_; }
+std::string  Employee::getSalary() const { return salary_; }
 
-void Student::setIndexNumber(std::string indexNumber){indexNumber_ = indexNumber;}
+void Employee::setSalary(std::string salary){salary_ = salary;}
 
-void  Student::printPerson() {
-    std::cout << std::string(20,'-') << '\n';
-    std::cout << "Index number: " << indexNumber_ << '\n';
+void  Employee::printPerson() {
     std::cout << std::string(20,'-') << '\n';;
     std::cout << "First name: " << getName() << '\n';
     std::cout << "Surname: " << getSurname() << '\n';
-    std::cout << std::string(20,'-') << '\n';;
+    std::cout << std::string(20,'-') << '\n';
+    std::cout << "Salary: " << salary_ << '\n';
     std::cout << "PESEL: " << getPESEL() << '\n';
     std::cout << "Sex: " << getSex() << '\n';
     std::cout << std::string(20,'-') << '\n';;

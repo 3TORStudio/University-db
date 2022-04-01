@@ -12,9 +12,15 @@ public:
             std::string PESEL,
             std::string indexNumber);
 
-    std::string const getIndexNumber();
+    std::string  getIndexNumber() const override;
+
+    void setIndexNumber(std::string indexNumber) override;
     
-    void setIndexNumber(std::string indexNumber);
-    
-    void printStudent();
+    void printPerson()  override;
+
+    //null objects pattern
+    std::string getSalary() const override {};
+    void setSalary(std::string salary) override {};
+
+    ~Student();
 };
