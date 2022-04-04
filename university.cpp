@@ -10,8 +10,8 @@ University::University(std::string name): name_(name){
    personnelBase_.push_back(std::make_shared<Student>(s));
 }
 
-bool University::add(std::shared_ptr<Student> student){
-   personnelBase_.push_back(student);
+bool University::add(std::shared_ptr<Person> person){
+   personnelBase_.push_back(person);
    return true;
 }
 
@@ -33,7 +33,7 @@ void  University::printDb(){
                  [](auto e){e->printPerson();});                
 }
 
-studentDb const University::findByName(const std::string  & name){
+personDb const University::findByName(const std::string  & name){
    auto result = std::find_if(personnelBase_.begin(),
                   personnelBase_.end(),
                   [name](auto student){return student->getName() == name;});
@@ -42,7 +42,7 @@ studentDb const University::findByName(const std::string  & name){
    return *result;
 }
 
-studentDb const University::findByPESEL(const std::string & PESEL){
+personDb const University::findByPESEL(const std::string & PESEL){
    auto result = std::find_if(std::next(personnelBase_.begin()),
                   personnelBase_.end(),
                   [PESEL](auto student){return student->getPESEL() == PESEL;});

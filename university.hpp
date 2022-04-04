@@ -8,8 +8,8 @@
 #include <iterator>
 #include <vector>
 
-using studentDb = std::shared_ptr<Student>;
-using universityDb = std::vector<studentDb>;
+using personDb = std::shared_ptr<Person>;
+using universityDb = std::vector<personDb>;
 
 class University
 {
@@ -18,12 +18,12 @@ class University
 public:
     University(std::string name);
 
-    bool add(std::shared_ptr<Student> student);
+    bool add(std::shared_ptr<Person> person);
     bool add();
 
     void printDb();
-    studentDb const findByName(const std::string & name);
-    studentDb const findByPESEL(const std::string & PESEL);
+    personDb const findByName(const std::string & name);
+    personDb const findByPESEL(const std::string & PESEL);
     universityDb & sortByName();
     universityDb & sortByPESEL();
     universityDb & deleteById(std::string index);
