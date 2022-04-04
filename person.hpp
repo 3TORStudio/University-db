@@ -39,5 +39,5 @@ public:
 
    virtual void printPerson() = 0;
    
-   virtual ~Person();
+   virtual ~Person(){};
 };

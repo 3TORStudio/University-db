@@ -30,7 +30,7 @@ bool University::add(){
 void  University::printDb(){  
    std::for_each(std::next(personnelBase_.begin()),
                  personnelBase_.end(),
-                 [](auto e){e->printStudent();});                
+                 [](auto e){e->printPerson();});                
 }
 
 studentDb const University::findByName(const std::string  & name){

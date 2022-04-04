@@ -22,5 +22,5 @@ public:
     std::string getSalary() const override {};
     void setSalary(std::string salary) override {};
 
-    ~Student();
+    ~Student(){};
 };

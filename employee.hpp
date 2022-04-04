@@ -21,5 +21,5 @@ public:
     void setIndexNumber(std::string indexNumber) override; 
     void printPerson()  override;
 
-    ~Employee();
+    ~Employee(){};
 };
