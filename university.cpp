@@ -16,14 +16,17 @@ bool University::add(std::shared_ptr<Person> person){
 }
 
 bool University::add(){
-   Student s("Zwirek",
-             "Muchomorek",
-             "M",
-             std::make_shared<Address>("Bagienna","1","77-111","Brzezina"),
-             "78040602656",
-             "111A");
-   
-   personnelBase_.push_back(std::make_shared<Student>(s));
+   std::cout << "Chose 'e' for adding employee.\n";
+   char a;
+   std::cin >> a;
+   if (a == 'e') {
+      employeeDb p = getDataEmployee();
+      personnelBase_.push_back(p);
+   }
+   else {
+      studentDb p = getDataStudent();
+      personnelBase_.push_back(p);
+   }
    return true;
 }
 
@@ -133,4 +136,54 @@ bool University::rFromF(){
       vData.clear();
    } 
    return true;
+}
+
+studentDb University::getDataStudent(){
+   std::vector<std::string> vS {"First name: ",
+                              "Last name: ",
+                              "Index number: ",
+                              "Street: ",
+                              "House number: ",
+                              "Postal code: ",
+                              "City: ",
+                              "PESEL: ",
+                              "Sex: "};
+   std::vector<std::string> vSa;
+
+   std::transform(vS.begin(),
+                  vS.end(),
+                  std::back_inserter(vSa),
+                  [](std::string q){std::cout << q; std::string a; std::cin >> a; return a;});
+   
+   return std::make_shared<Student>(vSa[0],
+                                    vSa[1],
+                                    vSa[8],
+                                    std::make_shared<Address>(vSa[3],vSa[4],vSa[5],vSa[6]),
+                                    vSa[7],
+                                    vSa[2]);
+}
+
+employeeDb University::getDataEmployee(){
+   std::vector<std::string> vS {"First name: ",
+                              "Last name: ",
+                              "Salary: ",
+                              "Street: ",
+                              "House number: ",
+                              "Postal code: ",
+                              "City: ",
+                              "PESEL: ",
+                              "Sex: "};
+   std::vector<std::string> vSa;
+
+   std::transform(vS.begin(),
+                  vS.end(),
+                  std::back_inserter(vSa),
+                  [](std::string q){std::cout << q; std::string a; std::cin >> a; return a;});
+   
+   return std::make_shared<Employee>(vSa[0],
+                                    vSa[1],
+                                    vSa[8],
+                                    std::make_shared<Address>(vSa[3],vSa[4],vSa[5],vSa[6]),
+                                    vSa[7],
+                                    vSa[2]);
 }

@@ -10,12 +10,17 @@
 #include <vector>
 
 using personDb = std::shared_ptr<Person>;
+using employeeDb = std::shared_ptr<Employee>;
+using studentDb = std::shared_ptr<Student>;
 using universityDb = std::vector<personDb>;
 
 class University
 {
     std::string name_;
     universityDb personnelBase_;
+    
+    studentDb getDataStudent();
+    employeeDb getDataEmployee();
 public:
     University(std::string name);
 
