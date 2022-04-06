@@ -6,8 +6,8 @@ int main()
 {
    // Test1 - University class constructor 
    University u("University");
-   // // Test2a - adding student to database
-   // u.add();
+   // Test2a - adding student to database
+   u.add();
    // //Test2b - adding student to database
    // u.add(std::make_shared<Student>("Mis",
    //             "Uszatek",

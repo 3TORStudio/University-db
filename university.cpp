@@ -1,13 +1,13 @@
 #include "university.hpp"
 
 University::University(std::string name): name_(name){
-   Student s("No exist",
+   Employee s("No exist",
              "-",
              "-",
              std::make_shared<Address>("-","-","-","-"),
              "00000000000",
              "-");
-   personnelBase_.push_back(std::make_shared<Student>(s));
+   personnelBase_.push_back(std::make_shared<Employee>(s));
 }
 
 bool University::add(std::shared_ptr<Person> person){

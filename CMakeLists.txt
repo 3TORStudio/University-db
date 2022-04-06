@@ -10,6 +10,7 @@ set(SRC_LIST
     main.cpp
     person.cpp
     student.cpp
+    employee.cpp
     university.cpp
 )
 
