@@ -17,17 +17,15 @@ std::string  Employee::getSalary() const { return salary_; }
 void Employee::setSalary(std::string salary){salary_ = salary;}
 
 void  Employee::printPerson() {
-    std::cout << std::string(20,'-') << '\n';;
+    std::cout << std::string(20,'x') << '\n';;
     std::cout << "First name: " << getName() << '\n';
-    std::cout << "Surname: " << getSurname() << '\n';
-    std::cout << std::string(20,'-') << '\n';
+    std::cout << "Last name: " << getSurname() << '\n';
     std::cout << "Salary: " << salary_ << '\n';
     std::cout << "PESEL: " << getPESEL() << '\n';
     std::cout << "Sex: " << getSex() << '\n';
-    std::cout << std::string(20,'-') << '\n';;
     std::cout << "Adress:\n";
     std::cout << getAddress()->getStreet() << ' ' << getAddress()->getHouseNumber() << '\n';
     std::cout << getAddress()->getPostalCode() << ' ' << getAddress()->getTown() << '\n';
-    std::cout << std::string(20,'-') << '\n';;
+    std::cout << std::string(20,'x') << '\n';;
 }
 

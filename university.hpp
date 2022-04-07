@@ -32,7 +32,9 @@ public:
     personDb const findByPESEL(const std::string & PESEL);
     universityDb & sortByName();
     universityDb & sortByPESEL();
+    universityDb & sortBySalary();
     universityDb & deleteById(std::string index);
+    void salaryModificationByPesel(const std::string & PESEL, const std::string & newSalary);
     bool pToF();
     bool rFromF();
 };

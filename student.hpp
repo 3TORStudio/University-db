@@ -19,7 +19,7 @@ public:
     void printPerson()  override;
 
     //null objects pattern
-    std::string getSalary() const override {};
+    std::string getSalary() const override {return "-1";};
     void setSalary(std::string salary) override {};
 
     ~Student(){};

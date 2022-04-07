@@ -187,3 +187,30 @@ employeeDb University::getDataEmployee(){
                                     vSa[7],
                                     vSa[2]);
 }
+
+void University::salaryModificationByPesel(const std::string & pesel, const std::string & newSalary){
+   auto p = findByPESEL(pesel);
+   if (p->getSalary() != "-1") {
+      p->setSalary(newSalary);
+   }
+}
+
+universityDb & University::sortBySalary(){
+   auto comp = [](auto firstPerson, auto secondPerson){
+      return firstPerson->getSalary() < secondPerson->getSalary();
+   };
+   std::sort(std::next(personnelBase_.begin()), personnelBase_.end(), comp);
+   return personnelBase_;
+}
+
+void University::printSt(){
+   std::for_each(std::next(personnelBase_.begin()),
+                 personnelBase_.end(),
+                 [](auto e){if (e->getSalary() != "-1") {e->printPerson();}});
+}
+
+void University::printEmp(){
+   std::for_each(std::next(personnelBase_.begin()),
+                 personnelBase_.end(),
+                 [](auto e){if (e->getIndex() != "-1") {e->printPerson();}});
+}
