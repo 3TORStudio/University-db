@@ -26,18 +26,18 @@ void Menu::printMenu() const {
 }
 
 void Menu::mainMenu() {
-    std::string ans;
-    do{
-        std::system("clear");
-        printMenu();
-    } while(requestForQuit());
+    std::string ans {};
+    printMenu();
+    
+    while(std::getline(std::cin,ans) && requestForQuit(ans)){
+        //std::system("clear");
+        switch (stoi(ans)){
+            case 4: std::cout << "4\n"; break;
+            default: std::cout << "Wrong choice. Try again.\n";
+        }
+    }
 }
 
-bool Menu::requestForQuit(){
-    std::string s;
-    std::cin >> s;
-    if (s == ":q") {
-        return false;
-    }
-    return true;
+bool Menu::requestForQuit(std::string ans){
+    return ans == ":q" ? false : true;
 }
