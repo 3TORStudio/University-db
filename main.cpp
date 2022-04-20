@@ -29,26 +29,20 @@ int main()
    // auto s4 = u.findByPESEL("78040602656");
    // std::cout << s4->getName() <<'\n';
    // std::cout << std::string(20,'-') << '\n';
-   // Test 4a - find pesel and modificate salary
-   // u.salaryModificationByPesel("78040602656","1000");
-   // auto s4 = u.findByPESEL("78040602656");
-   // std::cout << s4->getName() <<'\n';
-   // std::cout << s4->getSalary() <<'\n';
-   // std::cout << std::string(20,'-') << '\n';
-
-   // //Test5 - sort by name
-   // std::cout << "Befor sorting\n";
-   // u.printDb();
-   // u.sortByName();
-   // std::cout << "After sort by name\n";
-   // u.printDb();
-   // //Test6 - sort by pesel
-   // std::cout << "After sort by PESEL\n";
-   // u.sortByPESEL();
-   // u.printDb();
-   // Test6a - sort by Salary\n
-   std::cout << "After sort by Salary\n";
-   u.sortBySalary();
+   //Test5 - sort by name
+   std::cout << "Befor sorting\n";
+   u.printDb();
+   u.sortByName();
+   std::cout << "After sort by name\n";
+   u.printDb();
+   //Test6 - sort by pesel
+   std::cout << "After sort by PESEL\n";
+   u.sortByPESEL();
+   u.printDb();
+   //Test7 - delete by Id
+   std::system("clear");
+   u.deleteById("111B");
+   std::cout << "After deleting\n";
    u.printDb();
    // // Test7 - delete by Id
    // u.deleteById("111B");

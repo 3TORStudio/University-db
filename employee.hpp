@@ -17,7 +17,7 @@ public:
     void printPerson() override;
 
     //null objects pattern
-    std::string  getIndexNumber() const override {return "-1";};
+    std::string  getIndexNumber() const override {return "none";};
     void setIndexNumber(std::string indexNumber) override {}; 
 
     ~Employee(){};
