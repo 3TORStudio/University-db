@@ -25,19 +25,19 @@ void Menu::printMenu() const {
     std::cout << "xxxxxxxxxxxxxxxxxxxxxxx\n";
 }
 
-void Menu::mainMenu() const {
+void Menu::mainMenu() {
     std::string ans;
-    while(ans != ":w"){
+    do{
         std::system("clear");
         printMenu();
-    } 
+    } while(requestForQuit());
 }
+
 bool Menu::requestForQuit(){
     std::string s;
     std::cin >> s;
     if (s == ":q") {
         return false;
-    } else {
-        return true;
     }
+    return true;
 }
