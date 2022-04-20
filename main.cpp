@@ -1,16 +1,23 @@
 #include "student.hpp"
 #include "university.hpp"
+#include "menu.hpp"
 #include <iostream>
 
 int main()
 {
-   // Test1 - University class constructor 
-   University u("University");
-   // Test2a - adding student to database
-   u.add();
-   u.add();
-   u.add();
-   //Test2b - adding student to database
+   Menu m;
+
+   m.mainMenu();
+      
+   
+
+   // // Test1 - University class constructor 
+   // University u("University");
+   // // Test2a - adding student to database
+   // u.add();
+   // u.add();
+   // u.add();
+   // //Test2b - adding student to database
    // u.add(std::make_shared<Student>("Mis",
    //             "Uszatek",
    //             "M",
@@ -47,9 +54,9 @@ int main()
    // u.sortByPESEL();
    // u.printDb();
    // Test6a - sort by Salary\n
-   std::cout << "After sort by Salary\n";
-   u.sortBySalary();
-   u.printDb();
+   // std::cout << "After sort by Salary\n";
+   // u.sortBySalary();
+   // u.printDb();
    // // Test7 - delete by Id
    // u.deleteById("111B");
    // std::cout << "After deleting\n";

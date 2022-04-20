@@ -8,6 +8,7 @@ project(University)
 set(SRC_LIST
     address.cpp
     main.cpp
+    menu.cpp
     person.cpp
     student.cpp
     employee.cpp

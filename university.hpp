@@ -28,6 +28,8 @@ public:
     bool add();
 
     void printDb();
+    void printSt();
+    void printEmp();
     personDb const findByName(const std::string & name);
     personDb const findByPESEL(const std::string & PESEL);
     universityDb & sortByName();

@@ -212,5 +212,5 @@ void University::printSt(){
 void University::printEmp(){
    std::for_each(std::next(personnelBase_.begin()),
                  personnelBase_.end(),
-                 [](auto e){if (e->getIndex() != "-1") {e->printPerson();}});
+                 [](auto e){if (e->getIndexNumber() != "-1") {e->printPerson();}});
 }
