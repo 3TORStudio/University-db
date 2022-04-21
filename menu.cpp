@@ -1,6 +1,40 @@
 #include "menu.hpp"
 
-void Menu::printMenu() const {
+void Menu::printStartMenu() const{
+    std::system("clear");
+    std::cout << "Start menu\n";
+    std::cout << "--------------------\n";
+    std::cout << "1. New database\n";
+    std::cout << "2. Default database\n";
+    std::cout << "--------------------\n";
+    std::cout << ":q to exit\n";         
+}
+
+std::shared_ptr<University> Menu::startMenu(){
+    std::string choice {};
+    std::string nameOfNewDatabase;
+    printStartMenu();
+    while(getline(std::cin,choice) && requestForQuit(choice)){
+        if(choice == "1"){
+            std::cout << "The name of new database: ";
+            std::cin >> nameOfNewDatabase;
+            University u(nameOfNewDatabase);
+            std::cout << "startMenu " << u.getName() << '\n';
+            return std::make_shared<University> (u);
+        } 
+        else if(choice == "2"){
+            University ud("UniversityDefault");
+            return std::make_shared<University> (ud);
+        } 
+        else {
+            std::cerr << "Wrong choice. Try again.";
+        }
+    }
+    return nullptr;
+}
+
+void Menu::printMainMenu() const {
+    //std::system("clear");
     std::cout << "xxxxxxxxxxxxxxxxxxxxxxx\n";
     std::cout << "University database\n";
     std::cout << "xxxxxxxxxxxxxxxxxxxxxxx\n";
@@ -25,17 +59,23 @@ void Menu::printMenu() const {
     std::cout << "xxxxxxxxxxxxxxxxxxxxxxx\n";
 }
 
-void Menu::mainMenu() {
-    std::string ans {};
-    printMenu();
-    
-    while(std::getline(std::cin,ans) && requestForQuit(ans)){
-        //std::system("clear");
-        switch (stoi(ans)){
-            case 4: std::cout << "4\n"; break;
-            default: std::cout << "Wrong choice. Try again.\n";
+void Menu::mainMenu(std::shared_ptr<University> u) {
+    // if (u)
+    // {
+        std::string ans {};
+        std::cout << "mainManu: "<< u->getName() << '\n';
+        printMainMenu();
+        //std::cin.clear(); std::cin.ignore();
+        while(std::getline(std::cin,ans) && requestForQuit(ans)){
+            //std::system("clear");
+            switch (stoi(ans)){
+                case 4: u->printDb(); break;
+                default: std::cout << "Wrong choice. Try again.\n";
+            }
         }
-    }
+    // } else{
+    //     std::cout << "Database no exist.";
+    // }
 }
 
 bool Menu::requestForQuit(std::string ans){

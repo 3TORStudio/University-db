@@ -39,4 +39,6 @@ public:
     void salaryModificationByPesel(const std::string & PESEL, const std::string & newSalary);
     bool pToF();
     bool rFromF();
+
+    std::string getName(){return name_;};
 };

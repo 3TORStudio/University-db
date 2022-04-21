@@ -6,9 +6,10 @@
 int main()
 {
    Menu m;
-   University *u = nullptr;
+   //University *u = nullptr;
    
-   m.mainMenu();
+   
+   m.mainMenu(m.startMenu());
       
    
 

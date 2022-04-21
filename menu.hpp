@@ -1,4 +1,5 @@
 #pragma once
+#include "university.hpp"
 #include <iostream>
 
 class Menu {
@@ -6,6 +7,10 @@ class Menu {
 public:
     //bool quit = false;
     bool requestForQuit(std::string ans);
-    void printMenu() const;
-    void mainMenu();
+    
+    void printMainMenu() const;
+    void mainMenu(std::shared_ptr<University> u);
+    
+    void printStartMenu() const;
+    std::shared_ptr<University> startMenu();
 };

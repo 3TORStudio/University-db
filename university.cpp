@@ -31,9 +31,14 @@ bool University::add(){
 }
 
 void  University::printDb(){  
+   if (personnelBase_.size() == 1){
+      std::cerr << "The base is empty.";
+   }
+   else{
    std::for_each(std::next(personnelBase_.begin()),
                  personnelBase_.end(),
                  [](auto e){e->printPerson();});                
+   }
 }
 
 personDb const University::findByName(const std::string  & name){
