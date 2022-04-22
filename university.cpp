@@ -41,55 +41,91 @@ void  University::printDb(){
    }
 }
 
-personDb const University::findByName(const std::string  & name){
-   auto result = std::find_if(personnelBase_.begin(),
-                  personnelBase_.end(),
-                  [name](auto student){return student->getName() == name;});
-   if (result == personnelBase_.end())
-      return personnelBase_.front();
-   return *result;
+personDb const University::findByName(){
+   if (personnelBase_.size() == 1){
+      std::cout << "The base is empty.\nChose again: ";
+   }
+   else{
+      std::string name {};
+      std::cout << "Name to find: ";
+      getline(std::cin, name);
+      auto result = std::find_if(personnelBase_.begin(),
+                     personnelBase_.end(),
+                     [name](auto student){return student->getName() == name;});
+      if (result == personnelBase_.end())
+         return personnelBase_.front();
+      return *result;
+   }
+   return nullptr;
 }
 
-personDb const University::findByPESEL(const std::string & PESEL){
-   auto result = std::find_if(std::next(personnelBase_.begin()),
-                  personnelBase_.end(),
-                  [PESEL](auto student){return student->getPESEL() == PESEL;});
-   if (result == personnelBase_.end())
-      return personnelBase_.front();
-   return *result;
+personDb const University::findByPESEL(){
+   if (personnelBase_.size() == 1){
+      std::cout << "The base is empty.\nChose again: ";
+   }
+   else {
+      std::string PESEL {};
+      getline(std::cin, PESEL);
+      auto result = std::find_if(std::next(personnelBase_.begin()),
+                     personnelBase_.end(),
+                     [PESEL](auto student){return student->getPESEL() == PESEL;});
+      if (result == personnelBase_.end())
+         return personnelBase_.front();
+      return *result;
+   }
+   return nullptr;
 }
 
 universityDb & University::sortByName(){
-   auto comp = [](auto firstStudent, auto secondStudent){
-      return firstStudent->getSurname() < secondStudent->getSurname();
-   };
-   std::sort(std::next(personnelBase_.begin()), personnelBase_.end(), comp);
+   if (personnelBase_.size() == 1){
+      std::cout << "The base is empty.\nChose again: ";
+   }
+   else {
+      auto comp = [](auto firstStudent, auto secondStudent){
+         return firstStudent->getSurname() < secondStudent->getSurname();
+      };
+      std::sort(std::next(personnelBase_.begin()), personnelBase_.end(), comp);
+   }
    return personnelBase_;
 }
 
 universityDb & University::sortByPESEL(){
-   auto comp = [](auto firstStudent, auto secondStudent){
-      return firstStudent->getPESEL() < secondStudent->getPESEL();
-   };
-   std::sort(std::next(personnelBase_.begin()), personnelBase_.end(), comp);
+   if (personnelBase_.size() == 1){
+      std::cout << "The base is empty.\nChose again: ";
+   }
+   else {
+      auto comp = [](auto firstStudent, auto secondStudent){
+         return firstStudent->getPESEL() < secondStudent->getPESEL();
+      };
+      std::sort(std::next(personnelBase_.begin()), personnelBase_.end(), comp);
+   }
    return personnelBase_;
 }
 
-universityDb & University::deleteById(std::string index){
-   auto deletedStudent = 
-      std::remove_if(std::next(personnelBase_.begin()),
-                     personnelBase_.end(),
-                     [index](auto student){return student->getIndexNumber() == index;});
-   personnelBase_.erase(deletedStudent, personnelBase_.end());
+universityDb & University::deleteById(){
+   if (personnelBase_.size() == 1){
+      std::cout << "The base is empty.\nChose again: ";
+   }
+   else {
+      std::string index;
+      std::cout << "Index number to delete: ";
+      getline(std::cin, index);
+      auto deletedStudent = 
+         std::remove_if(std::next(personnelBase_.begin()),
+                        personnelBase_.end(),
+                        [index](auto student){return student->getIndexNumber() == index;});
+      personnelBase_.erase(deletedStudent, personnelBase_.end());
+   }
    return personnelBase_;
 }
 
 bool University::pToF(){
    if(personnelBase_.size() == 1){
-      std::cerr << "Database is empty!\n";
+      std::cout << "The base is empty.\nChose again: ";
       return false;
    }
-   std::ofstream output("UniversityDataBase.txt");
+   std::string nameOfBase = getName() + "DataBase.txt";
+   std::ofstream output(nameOfBase);
    if (output.fail()){
       std::cerr << "Error!!!";
       return false;
@@ -109,7 +145,8 @@ bool University::pToF(){
 }
 
 bool University::rFromF(){
-   std::ifstream input("UniversityDataBase.txt");
+   std::string nameOfBase = getName() + "DataBase.txt";
+   std::ifstream input(nameOfBase);
    if (!input.is_open()){
       std::cerr << "Error!!!";
       return false;
@@ -194,17 +231,22 @@ employeeDb University::getDataEmployee(){
 }
 
 void University::salaryModificationByPesel(const std::string & pesel, const std::string & newSalary){
-   auto p = findByPESEL(pesel);
+   auto p = findByPESEL();
    if (p->getSalary() != "-1") {
       p->setSalary(newSalary);
    }
 }
 
 universityDb & University::sortBySalary(){
-   auto comp = [](auto firstPerson, auto secondPerson){
-      return firstPerson->getSalary() < secondPerson->getSalary();
-   };
-   std::sort(std::next(personnelBase_.begin()), personnelBase_.end(), comp);
+   if (personnelBase_.size() == 1){
+      std::cerr << "The base is empty.\n";
+   }
+   else {
+      auto comp = [](auto firstPerson, auto secondPerson){
+         return firstPerson->getSalary() < secondPerson->getSalary();
+      };
+      std::sort(std::next(personnelBase_.begin()), personnelBase_.end(), comp);
+   }
    return personnelBase_;
 }
 

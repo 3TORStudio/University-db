@@ -30,12 +30,12 @@ public:
     void printDb();
     void printSt();
     void printEmp();
-    personDb const findByName(const std::string & name);
-    personDb const findByPESEL(const std::string & PESEL);
+    personDb const findByName();
+    personDb const findByPESEL();
     universityDb & sortByName();
     universityDb & sortByPESEL();
     universityDb & sortBySalary();
-    universityDb & deleteById(std::string index);
+    universityDb & deleteById();
     void salaryModificationByPesel(const std::string & PESEL, const std::string & newSalary);
     bool pToF();
     bool rFromF();
