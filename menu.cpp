@@ -65,23 +65,28 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
     if (u)
     {
         std::string ans {};
-        std::cout << "mainManu: "<< u->getName() << '\n';
+        // std::cout << "mainManu: "<< u->getName() << '\n';
         printMainMenu();
         //std::cin.clear(); std::cin.ignore();
         while(std::getline(std::cin,ans) && requestForQuit(ans)){
+            //std::cin.clear(); std::cin.ignore();
             //std::system("clear");
             printMainMenu();
-            switch (stoi(ans)){
-                case 3: u->pToF(); break;
-                case 4: u->printDb(); break;
-                case 7: u->sortByPESEL(); break;
-                case 8: u->sortByName(); break;
-                case 9: u->sortBySalary(); break;
-                case 10: u->salaryModificationByPesel("0","0"); break;
-                case 11: u->findByPESEL(); break;
-                case 12: u->findByName(); break;
-                case 13: u->deleteById(); break;
-                default: std::cout << "Wrong choice. Try again.\n"; break;
+            if (!ans.empty()){   
+                switch (stoi(ans)){
+                    case 3: u->pToF(); break;
+                    case 4: u->printDb(); break;
+                    case 7: u->sortByPESEL(); break;
+                    case 8: u->sortByName(); break;
+                    case 9: u->sortBySalary(); break;
+                    case 10: u->salaryModificationByPesel("0","0"); break;
+                    case 11: u->findByPESEL(); break;
+                    case 12: u->findByName(); break;
+                    case 13: u->deleteById(); break;
+                    default: std::cout << "Wrong choice. Try again.\n"; break;
+                }
+            } else {
+                std::cout << "No choice. Try again: ";
             }
         }
     } else{

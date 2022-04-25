@@ -32,7 +32,7 @@ bool University::add(){
 
 void  University::printDb(){  
    if (personnelBase_.size() == 1){
-      std::cerr << "The base is empty.";
+     std::cout << "The base is empty.\nChose again: ";
    }
    else{
    std::for_each(std::next(personnelBase_.begin()),
@@ -239,7 +239,7 @@ void University::salaryModificationByPesel(const std::string & pesel, const std:
 
 universityDb & University::sortBySalary(){
    if (personnelBase_.size() == 1){
-      std::cerr << "The base is empty.\n";
+      std::cout << "The base is empty.\nChose again: ";
    }
    else {
       auto comp = [](auto firstPerson, auto secondPerson){
