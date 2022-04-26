@@ -7,6 +7,7 @@
 #include <memory>
 #include <iostream>
 #include <iterator>
+#include <random>
 #include <vector>
 
 using personDb = std::shared_ptr<Person>;
@@ -21,6 +22,11 @@ class University
     
     studentDb getDataStudent();
     employeeDb getDataEmployee();
+    int countLinesInFile(const std::string & fileName);
+
+    std::string getFirstNameFromFile();
+    std::string getLastNameFile();
+
 public:
     University(std::string name);
 
@@ -36,9 +42,13 @@ public:
     universityDb & sortByPESEL();
     universityDb & sortBySalary();
     universityDb & deleteById();
+    universityDb & generateData();
     void salaryModificationByPesel(const std::string & PESEL, const std::string & newSalary);
     bool pToF();
     bool rFromF();
+
+
+    
 
     std::string getName(){return name_;};
 };

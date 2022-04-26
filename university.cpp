@@ -231,9 +231,14 @@ employeeDb University::getDataEmployee(){
 }
 
 void University::salaryModificationByPesel(const std::string & pesel, const std::string & newSalary){
-   auto p = findByPESEL();
-   if (p->getSalary() != "-1") {
-      p->setSalary(newSalary);
+   if (personnelBase_.size() == 1){
+      std::cout << "The base is empty.\nChose again: ";
+   } 
+   else {
+      auto p = findByPESEL();
+      if (p->getSalary() != "-1") {
+         p->setSalary(newSalary);
+      }
    }
 }
 
@@ -260,4 +265,26 @@ void University::printEmp(){
    std::for_each(std::next(personnelBase_.begin()),
                  personnelBase_.end(),
                  [](auto e){if (e->getIndexNumber() != "-1") {e->printPerson();}});
+}
+
+universityDb & University::generateData(){
+   std::random_device ranDev;
+   std::mt19937 ranEngine(ranDev());
+   std::uniform_int_distribution<int> numOfNames(1,countLinesInFile("firstNames.txt"));
+   std::uniform_int_distribution<int> numOfLastNames(1,countLinesInFile("lastNames.txt"));
+   std::uniform_int_distribution<int> maleOrFemale(0,1);
+   std::uniform_int_distribution<int> employeeOrStudent(0,1);
+   
+}
+
+int University::countLinesInFile(const std::string & fileName){
+   std::ifstream input(fileName);
+   size_t numOfLines = 0;
+   std::string unused{};
+   while(getline(input,unused)){
+      if(!unused.empty()){
+         ++numOfLines;
+      }
+   }
+   return numOfLines;
 }
