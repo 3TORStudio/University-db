@@ -268,13 +268,25 @@ void University::printEmp(){
 }
 
 universityDb & University::generateData(){
-   std::random_device ranDev;
-   std::mt19937 ranEngine(ranDev());
-   std::uniform_int_distribution<int> numOfNames(1,countLinesInFile("firstNames.txt"));
    std::uniform_int_distribution<int> numOfLastNames(1,countLinesInFile("lastNames.txt"));
    std::uniform_int_distribution<int> maleOrFemale(0,1);
    std::uniform_int_distribution<int> employeeOrStudent(0,1);
    
+}
+
+std::string University::getFirstNameFromFile(){
+   std::random_device ranDev;
+   std::mt19937 ranEngine(ranDev());
+   std::uniform_int_distribution<int> numOfNames(1,countLinesInFile("firstNames.txt"));
+   unsigned line = numOfNames(ranEngine);
+   unsigned counter = 0;
+   std::ifstream in("firstNames.txt");
+   std::string name{};
+   while(counter != line){
+      in >> name;
+      counter++;
+   }
+   return name;
 }
 
 int University::countLinesInFile(const std::string & fileName){
