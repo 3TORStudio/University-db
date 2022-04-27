@@ -88,6 +88,7 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
                     case 10: u->findByPESEL(); break;
                     case 11: u->findByName(); break;
                     case 12: u->deleteById(); break;
+                    case 13: u->generateData(); break;
                     default: std::cout << "Wrong choice. Try again.\n"; break;
                 }
             } else {

@@ -24,10 +24,11 @@ class University
     employeeDb getDataEmployee();
     int countLinesInFile(const std::string & fileName);
 
-    std::string getFirstNameFromFile();
+    
     std::string getLastNameFile();
 
 public:
+    std::string getFirstNameFromFile();
     University(std::string name);
 
     bool add(std::shared_ptr<Person> person);

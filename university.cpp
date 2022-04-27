@@ -268,29 +268,47 @@ void University::printEmp(){
 }
 
 universityDb & University::generateData(){
-   std::uniform_int_distribution<int> numOfLastNames(1,countLinesInFile("lastNames.txt"));
-   std::uniform_int_distribution<int> maleOrFemale(0,1);
-   std::uniform_int_distribution<int> employeeOrStudent(0,1);
-   
+   //std::uniform_int_distribution<int> numOfLastNames(1,countLinesInFile("lastNames.txt"));
+   //std::uniform_int_distribution<int> maleOrFemale(0,1);
+   //std::uniform_int_distribution<int> employeeOrStudent(0,1);
+   std::cout << "How many records to generate? ";
+   unsigned numOfRecords = 0;
+   std::cin >> numOfRecords;
+
+   for(size_t i = 0; i < numOfRecords; ++i){
+      std::string name = getFirstNameFromFile();
+      add(std::make_shared<Student>(name,
+         "Uszatek",
+         "M",
+         std::make_shared<Address>("Majowa","3","00-000","Lasek"),
+         "78040602656",
+         "111B"));
+   }
+   std::cin.ignore(); std::cin.clear();
 }
 
 std::string University::getFirstNameFromFile(){
    std::random_device ranDev;
    std::mt19937 ranEngine(ranDev());
    std::uniform_int_distribution<int> numOfNames(1,countLinesInFile("firstNames.txt"));
+   //std::uniform_int_distribution<int> numOfNames(1,5);
    unsigned line = numOfNames(ranEngine);
    unsigned counter = 0;
-   std::ifstream in("firstNames.txt");
+   std::ifstream in("../firstNames.txt");
+   if (!in.is_open()){
+      std::cerr << "Can't open\n";
+   }
    std::string name{};
    while(counter != line){
-      in >> name;
+      getline(in,name);
       counter++;
    }
    return name;
 }
 
 int University::countLinesInFile(const std::string & fileName){
-   std::ifstream input(fileName);
+   std::string src = "../" + fileName;
+   std::ifstream input(src);
    size_t numOfLines = 0;
    std::string unused{};
    while(getline(input,unused)){
