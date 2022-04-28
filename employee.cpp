@@ -17,7 +17,7 @@ std::string  Employee::getSalary() const { return salary_; }
 void Employee::setSalary(std::string salary){salary_ = salary;}
 
 void  Employee::printPerson() {
-    std::cout << std::string(20,'x') << '\n';;
+    std::cout << std::string(20,'x') << '\n';
     std::cout << "First name: " << getName() << '\n';
     std::cout << "Last name: " << getSurname() << '\n';
     std::cout << "Salary: " << salary_ << '\n';

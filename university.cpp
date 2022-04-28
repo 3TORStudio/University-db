@@ -31,6 +31,7 @@ bool University::add(){
 }
 
 void  University::printDb(){  
+   system("clear");
    if (personnelBase_.size() == 1){
      std::cout << "The base is empty.\nChose again: ";
    }
@@ -39,6 +40,7 @@ void  University::printDb(){
                  personnelBase_.end(),
                  [](auto e){e->printPerson();});                
    }
+   
 }
 
 personDb const University::findByName(){
@@ -267,7 +269,7 @@ void University::printEmp(){
                  [](auto e){if (e->getIndexNumber() != "-1") {e->printPerson();}});
 }
 
-universityDb & University::generateData(){
+void University::generateData(){
    //std::uniform_int_distribution<int> numOfLastNames(1,countLinesInFile("lastNames.txt"));
    //std::uniform_int_distribution<int> maleOrFemale(0,1);
    //std::uniform_int_distribution<int> employeeOrStudent(0,1);
@@ -288,10 +290,12 @@ universityDb & University::generateData(){
 }
 
 std::string University::getFirstNameFromFile(){
+   // int a;
+   // std::cin >> a;
    std::random_device ranDev;
    std::mt19937 ranEngine(ranDev());
-   std::uniform_int_distribution<int> numOfNames(1,countLinesInFile("firstNames.txt"));
-   //std::uniform_int_distribution<int> numOfNames(1,5);
+   //std::uniform_int_distribution<int> numOfNames(1,countLinesInFile("firstNames.txt"));
+   std::uniform_int_distribution<int> numOfNames(1,5);
    unsigned line = numOfNames(ranEngine);
    unsigned counter = 0;
    std::ifstream in("../firstNames.txt");
@@ -303,6 +307,7 @@ std::string University::getFirstNameFromFile(){
       getline(in,name);
       counter++;
    }
+   //std::cout << name << '\n';
    return name;
 }
 

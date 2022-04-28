@@ -66,11 +66,9 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
     if (u)
     {
         std::string ans {};
-        // std::cout << "mainManu: "<< u->getName() << '\n';
         printMainMenu();
         //std::cin.clear(); std::cin.ignore();
         while(std::getline(std::cin,ans) && requestForQuit(ans)){
-            //std::cin.clear(); std::cin.ignore();
             //std::system("clear");
             printMainMenu();
             if (!ans.empty() && std::all_of(ans.begin(),
@@ -91,11 +89,14 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
                     case 13: u->generateData(); break;
                     default: std::cout << "Wrong choice. Try again.\n"; break;
                 }
-            } else {
+            } 
+            else {
                 std::cout << "No choice. Try again: ";
             }
+            //printMainMenu();
         }
-    } else{
+    } 
+    else{
         std::cout << "Exit.";
     }
 }
