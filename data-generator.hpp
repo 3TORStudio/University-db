@@ -1,18 +1,17 @@
 #pragma once
 #include <string>
 #include <fstream>
+#include <ctime>
 #include <iostream>
 #include <random>
 
 class DataGenerator{
     int countLinesInFile(const std::string & fileName);
 public:
-    std::string getSource(const std::string & sex, const short & num);
-    std::string getMaleName();
-    std::string getFemalSurname();
-    std::string getMaleSurname();
-    std::string generatePesel();
+    std::string getSource(const short & num);
+    std::string getData (const std::string & data);
+    std::string generatePesel(const std::string & sex);
     std::string generateSex();
     std::string getAddress();
-    std::string get
+    //std::string get
 };

@@ -282,12 +282,26 @@ void University::generateData(){
 
    for(size_t i = 0; i < numOfRecords; ++i){
       std::string sex = dg->generateSex();
-      std::string name = dg->getSource(sex,1);
+      std::string name {};
+      std::string surname {};
+      //std::cout << dg->generatePesel(sex) << '\n';
+      
+      if (sex == "F"){
+         name = dg->getData(dg->getSource(1));
+         surname = dg->getData(dg->getSource(2)); 
+      }
+      if (sex == "M"){
+         name = dg->getData(dg->getSource(3));
+         surname = dg->getData(dg->getSource(4)); 
+      }
+      std::string pesel = dg->generatePesel(sex);
+      //std::cout << pesel << '\n';
+      //std::string name = dg->getSource(sex,1);
       add(std::make_shared<Student>(name,
-         "Uszatek",
+         surname,
          sex,
          std::make_shared<Address>("Majowa","3","00-000","Lasek"),
-         "78040602656",
+         pesel,
          "111B"));
    }
    std::cin.ignore(); std::cin.clear();
