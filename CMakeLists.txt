@@ -7,6 +7,7 @@ project(University)
 
 set(SRC_LIST
     address.cpp
+    data-generator.cpp
     main.cpp
     menu.cpp
     person.cpp

@@ -270,18 +270,25 @@ void University::printEmp(){
 }
 
 void University::generateData(){
+   auto dg = std::make_unique<DataGenerator>();
+   std::random_device ranDev;
+   std::mt19937 ranEngine(ranDev());
    //std::uniform_int_distribution<int> numOfLastNames(1,countLinesInFile("lastNames.txt"));
-   //std::uniform_int_distribution<int> maleOrFemale(0,1);
+   std::uniform_int_distribution<int> maleOrFemale(0,1);
    //std::uniform_int_distribution<int> employeeOrStudent(0,1);
    std::cout << "How many records to generate? ";
    unsigned numOfRecords = 0;
    std::cin >> numOfRecords;
 
+  
+
    for(size_t i = 0; i < numOfRecords; ++i){
-      std::string name = getFirstNameFromFile();
+      bool isFemale = static_cast<bool>(maleOrFemale(ranEngine));
+      std::string sex = isFemale ? "F" : "M";
+      std::string name = dg->getMaleName();
       add(std::make_shared<Student>(name,
          "Uszatek",
-         "M",
+         sex,
          std::make_shared<Address>("Majowa","3","00-000","Lasek"),
          "78040602656",
          "111B"));
@@ -289,37 +296,34 @@ void University::generateData(){
    std::cin.ignore(); std::cin.clear();
 }
 
-std::string University::getFirstNameFromFile(){
-   // int a;
-   // std::cin >> a;
-   std::random_device ranDev;
-   std::mt19937 ranEngine(ranDev());
-   //std::uniform_int_distribution<int> numOfNames(1,countLinesInFile("firstNames.txt"));
-   std::uniform_int_distribution<int> numOfNames(1,5);
-   unsigned line = numOfNames(ranEngine);
-   unsigned counter = 0;
-   std::ifstream in("../firstNames.txt");
-   if (!in.is_open()){
-      std::cerr << "Can't open\n";
-   }
-   std::string name{};
-   while(counter != line){
-      getline(in,name);
-      counter++;
-   }
-   //std::cout << name << '\n';
-   return name;
-}
+// std::string University::getFirstNameFromFile(){
+//    std::random_device ranDev;
+//    std::mt19937 ranEngine(ranDev());
+//    std::uniform_int_distribution<int> numOfNames(1,countLinesInFile("firstNames.txt"));
+//    //std::uniform_int_distribution<int> numOfNames(1,5);
+//    unsigned line = numOfNames(ranEngine);
+//    unsigned counter = 0;
+//    std::ifstream in("../firstNames.txt");
+//    if (!in.is_open()){
+//       std::cerr << "Can't open\n";
+//    }
+//    std::string name{};
+//    while(counter != line){
+//       getline(in,name);
+//       counter++;
+//    }
+//    return name;
+// }
 
-int University::countLinesInFile(const std::string & fileName){
-   std::string src = "../" + fileName;
-   std::ifstream input(src);
-   size_t numOfLines = 0;
-   std::string unused{};
-   while(getline(input,unused)){
-      if(!unused.empty()){
-         ++numOfLines;
-      }
-   }
-   return numOfLines;
-}
+// int University::countLinesInFile(const std::string & fileName){
+//    std::string src = "../" + fileName;
+//    std::ifstream input(src);
+//    size_t numOfLines = 0;
+//    std::string unused{};
+//    while(getline(input,unused)){
+//       if(!unused.empty()){
+//          ++numOfLines;
+//       }
+//    }
+//    return numOfLines;
+// }

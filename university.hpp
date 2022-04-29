@@ -1,4 +1,5 @@
 #pragma once
+#include "data-generator.hpp"
 #include "employee.hpp"
 #include "person.hpp"
 #include "student.hpp"
@@ -22,13 +23,12 @@ class University
     
     studentDb getDataStudent();
     employeeDb getDataEmployee();
-    int countLinesInFile(const std::string & fileName);
+    // int countLinesInFile(const std::string & fileName);
 
     
-    std::string getLastNameFile();
-
+    // std::string getLastNameFile();
+    // std::string getFirstNameFromFile();
 public:
-    std::string getFirstNameFromFile();
     University(std::string name);
 
     bool add(std::shared_ptr<Person> person);
