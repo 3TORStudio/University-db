@@ -280,12 +280,9 @@ void University::generateData(){
    unsigned numOfRecords = 0;
    std::cin >> numOfRecords;
 
-  
-
    for(size_t i = 0; i < numOfRecords; ++i){
-      bool isFemale = static_cast<bool>(maleOrFemale(ranEngine));
-      std::string sex = isFemale ? "F" : "M";
-      std::string name = dg->getMaleName();
+      std::string sex = dg->generateSex();
+      std::string name = dg->getSource(sex,1);
       add(std::make_shared<Student>(name,
          "Uszatek",
          sex,
