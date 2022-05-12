@@ -23,7 +23,7 @@ std::string DataGenerator::getSource(const short & num){
    return "";
 }
 
-std::string DataGenerator::getData(const std::string & src){  
+std::string DataGenerator::generateName(const std::string & src){  
    std::uniform_int_distribution<int> numOfNames(1,countLinesInFile(src));
    unsigned line = numOfNames(ranEngine);
    unsigned counter = 0;
@@ -68,7 +68,7 @@ std::string DataGenerator::generatePesel(const std::string & sex){
   time_t t = time(NULL);
   //std::cout << asctime(localtime(&t)) << '\n';
   t -= interval;
-  std::cout << asctime(localtime(&t)) << '\n';
+  //std::cout << asctime(localtime(&t)) << '\n';
   auto date = gmtime(&t); 
   std::string year = std::to_string(date->tm_year + 1900);
   std::string month = std::to_string(date->tm_mon + 1);
@@ -81,8 +81,17 @@ std::string DataGenerator::generatePesel(const std::string & sex){
                                  : std::to_string(date->tm_mon + 1))) 
                          + (date->tm_mday < 10 ? "0" + day : day);
    
-   auto numPesel = std::to_string(num(ranEngine));
-   peselData += numPesel;
+   short numPesel = num(ranEngine);
+   if(numPesel < 10){
+      peselData += "00" + std::to_string(numPesel);
+   }
+   else if (numPesel < 100){
+      peselData += "0" + std::to_string(numPesel);
+   }
+   else{
+      peselData += std::to_string(numPesel);
+
+   }
 
    short number = sexN(ranEngine);
    std::string numSex {};
@@ -114,8 +123,38 @@ std::string DataGenerator::generatePesel(const std::string & sex){
                + (peselData[7] - '0') * 9
                + peselData[8] -'0'
                + (peselData[9] - '0') * 3;
-   auto controlNum = s % 10 == 0 ? std::to_string(0) : std::to_string(10 - (s % 10));
-   peselData += controlNum;
    
+   std::cout << s << ' ';
+   auto controlNum = s % 10 == 0 ? "0" : std::to_string(10 - (s % 10));
+   
+   std::cout << controlNum << ' ';
+   peselData += controlNum;
+   std::cout << peselData << '\n';
+
+
    return peselData;
+}
+
+std::string DataGenerator::generateIndexNumber(){
+   std::uniform_int_distribution<short> ranNum(1,100);
+   std::uniform_int_distribution<short> ranLetter(65,90);
+
+   std::string indexNumber {};
+   short number = ranNum(ranEngine);
+   if(number < 10){
+      indexNumber = "00" + std::to_string(number); 
+   }
+   else if (number < 100){
+      indexNumber = "0" + std::to_string(number);
+   }
+   else {
+      indexNumber = std::to_string(number);
+   }
+   indexNumber += static_cast<char>(ranLetter(ranEngine));
+   return indexNumber;
+}
+
+std::string DataGenerator::generateSalary(){
+   std::uniform_int_distribution<int> randomSalary(3200,10000);
+   return std::to_string(randomSalary(ranEngine));
 }

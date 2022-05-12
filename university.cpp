@@ -273,9 +273,9 @@ void University::generateData(){
    auto dg = std::make_unique<DataGenerator>();
    std::random_device ranDev;
    std::mt19937 ranEngine(ranDev());
-   //std::uniform_int_distribution<int> numOfLastNames(1,countLinesInFile("lastNames.txt"));
-   std::uniform_int_distribution<int> maleOrFemale(0,1);
-   //std::uniform_int_distribution<int> employeeOrStudent(0,1);
+   
+   std::uniform_int_distribution<short> isEmployee(0,1);
+   
    std::cout << "How many records to generate? ";
    unsigned numOfRecords = 0;
    std::cin >> numOfRecords;
@@ -284,57 +284,35 @@ void University::generateData(){
       std::string sex = dg->generateSex();
       std::string name {};
       std::string surname {};
-      //std::cout << dg->generatePesel(sex) << '\n';
       
       if (sex == "F"){
-         name = dg->getData(dg->getSource(1));
-         surname = dg->getData(dg->getSource(2)); 
+         name = dg->generateName(dg->getSource(1));
+         surname = dg->generateName(dg->getSource(2)); 
       }
       if (sex == "M"){
-         name = dg->getData(dg->getSource(3));
-         surname = dg->getData(dg->getSource(4)); 
+         name = dg->generateName(dg->getSource(3));
+         surname = dg->generateName(dg->getSource(4)); 
       }
       std::string pesel = dg->generatePesel(sex);
-      //std::cout << pesel << '\n';
-      //std::string name = dg->getSource(sex,1);
-      add(std::make_shared<Student>(name,
-         surname,
-         sex,
-         std::make_shared<Address>("Majowa","3","00-000","Lasek"),
-         pesel,
-         "111B"));
+      std::string indexNumber = dg->generateIndexNumber();
+      std::string salary = dg->generateSalary();
+      
+      if (isEmployee(ranDev)){
+         add(std::make_shared<Student>(name,
+            surname,
+            sex,
+            std::make_shared<Address>("Majowa","3","00-000","Lasek"),
+            pesel,
+            salary));
+      }
+      else {
+         add(std::make_shared<Student>(name,
+            surname,
+            sex,
+            std::make_shared<Address>("Majowa","3","00-000","Lasek"),
+            pesel,
+            indexNumber));
+      }
    }
    std::cin.ignore(); std::cin.clear();
 }
-
-// std::string University::getFirstNameFromFile(){
-//    std::random_device ranDev;
-//    std::mt19937 ranEngine(ranDev());
-//    std::uniform_int_distribution<int> numOfNames(1,countLinesInFile("firstNames.txt"));
-//    //std::uniform_int_distribution<int> numOfNames(1,5);
-//    unsigned line = numOfNames(ranEngine);
-//    unsigned counter = 0;
-//    std::ifstream in("../firstNames.txt");
-//    if (!in.is_open()){
-//       std::cerr << "Can't open\n";
-//    }
-//    std::string name{};
-//    while(counter != line){
-//       getline(in,name);
-//       counter++;
-//    }
-//    return name;
-// }
-
-// int University::countLinesInFile(const std::string & fileName){
-//    std::string src = "../" + fileName;
-//    std::ifstream input(src);
-//    size_t numOfLines = 0;
-//    std::string unused{};
-//    while(getline(input,unused)){
-//       if(!unused.empty()){
-//          ++numOfLines;
-//       }
-//    }
-//    return numOfLines;
-// }
