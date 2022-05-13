@@ -1,42 +1,26 @@
 #pragma once
 #include "address.hpp"
-#include <algorithm>
-#include <cctype>
-#include <iostream>
-#include <memory>
-#include <string>
-#include <sstream>
+#include "person.hpp"
 
-class Student {
-    std::string name_;
-    std::string surname_;
+class Student: public Person {
     std::string indexNumber_;
-    std::string PESEL_;
-    std::string sex_;
-    std::shared_ptr<Address> address_;
-    static bool isPeselCorrect(std::string);
-    // const static unsigned numOfDatabaseValues = 9;
 public:
     Student (std::string name,
             std::string surname,
+            std::string sex,
             std::shared_ptr<Address> address,
-            std::string indexNumber,
             std::string PESEL,
-            std::string sex);
+            std::string indexNumber);
+
+    std::string  getIndexNumber() const override;
+
+    void setIndexNumber(std::string indexNumber) override;
     
-    std::string const getName();
-    std::string const getSurname();
-    std::shared_ptr<Address> getAddress(); 
-    std::string const getIndexNumber();
-    std::string const getPESEL();
-    std::string const getSex();    
+    void printPerson()  override;
 
-    void setName(std::string name);
-    void setSurname(std::string surname);
-    void setIndexNumber(std::string indexNumber);
-    void setPESEL(std::string PESEL);
-    void setSex(std::string sex);
-    void setAddress(std::shared_ptr<Address> address);
+    //null objects pattern
+    std::string getSalary() const override {return "none";};
+    void setSalary(std::string salary) override {};
 
-    void printStudent();
+    ~Student(){};
 };

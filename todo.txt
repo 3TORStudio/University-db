@@ -1,0 +1,2 @@
+1) jezeli znajdzie wiele tych samych nazwisk to niech wyswietli wszystkie,
+na razie zwraca pierwszy napotkany
