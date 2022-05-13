@@ -60,15 +60,11 @@ std::string DataGenerator::generatePesel(const std::string & sex){
    std::uniform_int_distribution<short> num(1,999);
    std::uniform_int_distribution<short> sexN(0,9);
    
-
+   // losowanie daty
   unsigned interval = ran(ranEngine);
 
-  //std::cout << interval << '\n';
-  
   time_t t = time(NULL);
-  //std::cout << asctime(localtime(&t)) << '\n';
   t -= interval;
-  //std::cout << asctime(localtime(&t)) << '\n';
   auto date = gmtime(&t); 
   std::string year = std::to_string(date->tm_year + 1900);
   std::string month = std::to_string(date->tm_mon + 1);
@@ -81,6 +77,7 @@ std::string DataGenerator::generatePesel(const std::string & sex){
                                  : std::to_string(date->tm_mon + 1))) 
                          + (date->tm_mday < 10 ? "0" + day : day);
    
+   // losowanie numeru porzadkowego
    short numPesel = num(ranEngine);
    if(numPesel < 10){
       peselData += "00" + std::to_string(numPesel);
@@ -92,10 +89,11 @@ std::string DataGenerator::generatePesel(const std::string & sex){
       peselData += std::to_string(numPesel);
 
    }
-
+   // losowanie numeru dla plci
    short number = sexN(ranEngine);
+   
    std::string numSex {};
-   if(sex == "F"){
+   if(sex == "F" && number != 0){
       if(number % 2){
          numSex = std::to_string(number - 1);
       }
@@ -107,12 +105,16 @@ std::string DataGenerator::generatePesel(const std::string & sex){
       if(number % 2){
          numSex = std::to_string(number);
       }
-      else{
+      else if (number == 0) {
+         numSex = std::to_string(number + 1);
+      }
+      else {
          numSex = std::to_string(number - 1);
       }
    }
    peselData += numSex;
 
+   //obliczanie sumy kontrolnej
    unsigned s = peselData[0] -'0'
                + (peselData[1] - '0') * 3
                + (peselData[2] - '0') * 7
@@ -124,13 +126,9 @@ std::string DataGenerator::generatePesel(const std::string & sex){
                + peselData[8] -'0'
                + (peselData[9] - '0') * 3;
    
-   std::cout << s << ' ';
    auto controlNum = s % 10 == 0 ? "0" : std::to_string(10 - (s % 10));
-   
-   std::cout << controlNum << ' ';
-   peselData += controlNum;
-   std::cout << peselData << '\n';
 
+   peselData += controlNum;
 
    return peselData;
 }

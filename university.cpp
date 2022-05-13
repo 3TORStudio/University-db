@@ -53,7 +53,7 @@ personDb const University::findByName(){
       getline(std::cin, name);
       auto result = std::find_if(personnelBase_.begin(),
                      personnelBase_.end(),
-                     [name](auto student){return student->getName() == name;});
+                     [name](auto student){return student->getSurname() == name;});
       if (result == personnelBase_.end())
          return personnelBase_.front();
       return *result;
