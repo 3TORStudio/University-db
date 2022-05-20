@@ -84,7 +84,7 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
                     case 8: u->sortBySalary(); break;
                     case 9: u->salaryModificationByPesel("0","0"); break;
                     case 10: u->findByPESEL(); break;
-                    case 11: u->findByName()->printPerson(); break;
+                    case 11: u->findByName(); break;
                     case 12: u->deleteById(); break;
                     case 13: u->generateData(); break;
                     default: std::cout << "Wrong choice. Try again.\n"; break;

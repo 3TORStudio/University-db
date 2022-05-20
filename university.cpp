@@ -48,14 +48,26 @@ personDb const University::findByName(){
       std::cout << "The base is empty.\nChose again: ";
    }
    else{
+      std::sort(personnelBase_.begin(),personnelBase_.end());
       std::string name {};
       std::cout << "Name to find: ";
       getline(std::cin, name);
       auto result = std::find_if(personnelBase_.begin(),
                      personnelBase_.end(),
                      [name](auto student){return student->getSurname() == name;});
-      if (result == personnelBase_.end())
+      if (result == personnelBase_.end()){
          return personnelBase_.front();
+      }
+      universityDb tempList;
+      std::copy_if(result,
+                  personnelBase_.end(),
+                  std::back_inserter<universityDb>(tempList),
+                  [name](personDb p){return p->getSurname() == name;});
+      
+      for(auto e: tempList){
+         e->printPerson();
+      }
+
       return *result;
    }
    return nullptr;

@@ -1,2 +1,3 @@
 1) jezeli znajdzie wiele tych samych nazwisk to niech wyswietli wszystkie,
-na razie zwraca pierwszy napotkany
+na razie zwraca pierwszy napotkany - done
+2) Konrad pojawia się z nazwiskiem Wasilewska - done
