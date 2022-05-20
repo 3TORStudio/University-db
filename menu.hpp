@@ -1,8 +1,11 @@
 #pragma once
 #include "university.hpp"
+#include <algorithm>
+#include <cctype>
 #include <iostream>
 
 class Menu {
+    bool nameOfNewDatabaseIsNotOk(std::string nameOfNewDatabase);
     
 public:
     //bool quit = false;

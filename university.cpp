@@ -270,15 +270,27 @@ universityDb & University::sortBySalary(){
 }
 
 void University::printSt(){
+    system("clear");
+   if (personnelBase_.size() == 1){
+     std::cout << "The base is empty.\nChose again: ";
+   }
+   else{
    std::for_each(std::next(personnelBase_.begin()),
                  personnelBase_.end(),
                  [](auto e){if (e->getSalary() != "-1") {e->printPerson();}});
+   }
 }
 
 void University::printEmp(){
+    system("clear");
+   if (personnelBase_.size() == 1){
+     std::cout << "The base is empty.\nChose again: ";
+   }
+   else{
    std::for_each(std::next(personnelBase_.begin()),
                  personnelBase_.end(),
                  [](auto e){if (e->getIndexNumber() != "-1") {e->printPerson();}});
+   }
 }
 
 void University::generateData(){

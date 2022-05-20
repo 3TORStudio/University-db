@@ -1,4 +1,5 @@
 #include "menu.hpp"
+//#include "university.hpp"
 
 void Menu::printStartMenu() const{
     std::system("clear");
@@ -7,7 +8,10 @@ void Menu::printStartMenu() const{
     std::cout << "1. New database\n";
     std::cout << "2. Default database\n";
     std::cout << "--------------------\n";
-    std::cout << ":q to exit\n";         
+    std::cout << ":q to exit\n";
+    std::cout << "Explanation:: If you chose 1. you can add your own name of database,"
+                <<" otherwise the name of database will be \"default\".\n Your choice: ";
+
 }
 
 std::shared_ptr<University> Menu::startMenu(){
@@ -18,6 +22,10 @@ std::shared_ptr<University> Menu::startMenu(){
         if(choice == "1"){
             std::cout << "The name of new database: ";
             std::cin >> nameOfNewDatabase;
+            while(nameOfNewDatabaseIsNotOk(nameOfNewDatabase)){
+                std::cout << "\nWrong name. Try again: ";
+                std::cin >> nameOfNewDatabase;
+            }
             University u(nameOfNewDatabase);
             std::cout << "startMenu " << u.getName() << '\n';
             return std::make_shared<University> (u);
@@ -37,6 +45,7 @@ void Menu::printMainMenu() const {
     std::system("clear");
     std::cout << "xxxxxxxxxxxxxxxxxxxxxxx\n";
     std::cout << "University database\n";
+    //std::cout << u.getName() << '\n';
     std::cout << "xxxxxxxxxxxxxxxxxxxxxxx\n";
     std::cout << "1. Read data from file\n";
     std::cout << "2. Write data to file\n";
@@ -67,9 +76,7 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
     {
         std::string ans {};
         printMainMenu();
-        //std::cin.clear(); std::cin.ignore();
         while(std::getline(std::cin,ans) && requestForQuit(ans)){
-            //std::system("clear");
             printMainMenu();
             if (!ans.empty() && std::all_of(ans.begin(),
                                              ans.end(),
@@ -77,8 +84,11 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
                                                  return isdigit(c);
                                              })){   
                 switch (stoi(ans)){
+                    case 1: u->rFromF(); break;
                     case 2: u->pToF(); break;
                     case 3: u->printDb(); break;
+                    case 4: u->printSt(); break;
+                    case 5: u->printEmp(); break;
                     case 6: u->sortByPESEL(); break;
                     case 7: u->sortByName(); break;
                     case 8: u->sortBySalary(); break;
@@ -103,4 +113,13 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
 
 bool Menu::requestForQuit(std::string ans){
     return ans == ":q" ? false : true;
+}
+
+bool Menu::nameOfNewDatabaseIsNotOk(std::string nameOfNewDatabase){
+    if(std::any_of(nameOfNewDatabase.begin(),
+                   nameOfNewDatabase.end(),
+                   [](unsigned char c){return !isalnum(c);})){
+        return true;
+    }
+    return false;
 }

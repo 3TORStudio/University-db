@@ -1,3 +1,6 @@
 1) jezeli znajdzie wiele tych samych nazwisk to niech wyswietli wszystkie,
 na razie zwraca pierwszy napotkany - done
 2) Konrad pojawia się z nazwiskiem Wasilewska - done
+3) Przegladanie plików do wczytania
+4) Sprawdzanie poprawnosci nazwy bazy danych
+5) Losowanie adresów

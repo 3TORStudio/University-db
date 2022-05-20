@@ -17,5 +17,4 @@ public:
     std::string const getHouseNumber();
     std::string const getPostalCode();
     std::string const getTown();
-
 };
