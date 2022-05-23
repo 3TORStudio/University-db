@@ -5,10 +5,13 @@
 #include "student.hpp"
 #include <algorithm>
 #include <fstream>
+#include <filesystem>
 #include <memory>
 #include <iostream>
 #include <iterator>
 #include <random>
+#include <string>
+#include <string_view>
 #include <vector>
 
 using personDb = std::shared_ptr<Person>;
@@ -23,11 +26,7 @@ class University
     
     studentDb getDataStudent();
     employeeDb getDataEmployee();
-    // int countLinesInFile(const std::string & fileName);
-
-    
-    // std::string getLastNameFile();
-    // std::string getFirstNameFromFile();
+ 
 public:
     University(std::string name);
 

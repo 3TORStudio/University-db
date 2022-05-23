@@ -2,5 +2,40 @@
 na razie zwraca pierwszy napotkany - done
 2) Konrad pojawia się z nazwiskiem Wasilewska - done
 3) Przegladanie plików do wczytania
-4) Sprawdzanie poprawnosci nazwy bazy danych
+4) Sprawdzanie poprawnosci nazwy bazy danych - done
 5) Losowanie adresów
+6) Wyswietlanie nazwy bazy danych w menu
+
+
+#include <iostream>
+#include <filesystem>
+//namespace fs = std::filesystem;
+int main() {
+  //const fs::path pathToShow{ argc >= 2 ? argv[1] : fs::current_path();
+  const std::filesystem::path pathToShow = std::filesystem::current_path();
+  
+    for (const auto& entry : std::filesystem::directory_iterator(pathToShow)) {
+      const auto filenameStr = entry.path().filename().string();
+      //std::cout << "ext: " << std::filesystem::path(filenameStr).extension().string() << '\n';
+      // if (entry.is_directory()) {
+      //     std::cout << "dir:  " << filenameStr << '\n';
+      // }
+      // else 
+      if (entry.is_regular_file() && 
+          std::filesystem::path(filenameStr).extension().string() == ".txt") {
+          std::cout << "file: " << filenameStr << '\n';
+      }
+  //     else
+  //         std::cout << "??    " << filenameStr << '\n';
+  }
+} 
+
+const std::filesystem::path pathToShow = std::filesystem::current_path();
+   std::string nameOfBase = getName() + "DataBase.txt";
+   for (const auto& entry : std::filesystem::directory_iterator(pathToShow)) {
+      const auto filenameStr = entry.path().filename().string();
+      if (entry.is_regular_file() && 
+          std::filesystem::path(filenameStr).extension().string() == ".txt") {
+          std::cout << "file: " << filenameStr << '\n';
+      }
+  }

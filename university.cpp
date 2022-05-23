@@ -159,7 +159,28 @@ bool University::pToF(){
 }
 
 bool University::rFromF(){
-   std::string nameOfBase = getName() + "DataBase.txt";
+   // listening data base files
+   const std::filesystem::path pathToShow = std::filesystem::current_path();
+   
+   std:: vector<std::string> listOfFiles;
+   for (const auto& entry : std::filesystem::directory_iterator(pathToShow)) {
+      const std::string filenameStr = entry.path().filename().string();
+      if (entry.is_regular_file() && 
+          filenameStr.find("DataBase.txt") != std::string::npos) {
+          listOfFiles.push_back(filenameStr);
+      }
+   }
+   if (listOfFiles.empty()){
+      std::cout << "There is no data base files. ";
+      return false;
+   }
+   std::copy(listOfFiles.begin(),
+             listOfFiles.end(),
+             std::ostream_iterator<std::string>(std::cout,"\n"));
+   //
+   std::string nameOfBase {};
+   std:: cout << "Input the name of file to read: ";
+   std:: cin >> nameOfBase;
    std::ifstream input(nameOfBase);
    if (!input.is_open()){
       std::cerr << "Error!!!";

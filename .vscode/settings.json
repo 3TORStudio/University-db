@@ -74,7 +74,8 @@
         "variant": "cpp",
         "__functional_base": "cpp",
         "iomanip": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "codecvt": "cpp"
     },
     "editor.fontSize": 13,
     "editor.minimap.enabled": false
