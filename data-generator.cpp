@@ -156,3 +156,50 @@ std::string DataGenerator::generateSalary(){
    std::uniform_int_distribution<int> randomSalary(3200,10000);
    return std::to_string(randomSalary(ranEngine));
 }
+
+std::shared_ptr<Address> DataGenerator::generateAddress(){
+   // street
+   std::ifstream input("../streets.txt");
+   if (!input.is_open()){
+      std::cout << "Can't open\n";
+   }
+   std::uniform_int_distribution<int> numOfStreets(1,countLinesInFile("../streets.txt"));
+   unsigned line = numOfStreets(ranEngine);
+   unsigned counter = 0;
+
+   std::string street{};
+   while(counter != line){
+      getline(input,street);
+      counter++;
+   }
+   input.close();
+
+   // house number
+   std::uniform_int_distribution<int> kindOfHouse(0,1);
+   std::uniform_int_distribution<int> houseNumber(1,100);
+   std::uniform_int_distribution<int> flatNumber(1,150);
+
+   std::string houseNumber = kindOfHouse(ranEngine)
+                           ? std::to_string(houseNumber(ranEngine))
+                           : std::to_string(houseNumber(ranEngine)) + std::to_string(flatNumber(ranEngine));
+   
+   // postal code
+   input.open("../postalCodes.txt");
+   if (!input.is_open()){
+      std::cout << "Can't open\n";
+   }
+   std::uniform_int_distribution<int> numOfPostalCodes(1,countLinesInFile("../postalCodes.txt"));
+   line = numOfPostalCodes(ranEngine);
+   counter = 0;
+   
+   std::string postalCode{};
+   std::string town{};
+   while(counter != line){
+      input >> postalCode >> town;
+      counter++;
+   }
+
+   Address a (street,houseNumber,postalCode,town);
+
+   return std::make_shared<Address>(a);
+}
