@@ -1,8 +1,10 @@
 #pragma once
+#include "address.hpp"
 #include <string>
 #include <fstream>
 #include <ctime>
 #include <iostream>
+#include <memory>
 #include <random>
 
 class DataGenerator{
@@ -15,5 +17,5 @@ public:
     std::string generateIndexNumber();
     std::string getAddress();
     std::string generateSalary();
-    //std::string get
+    std::shared_ptr<Address> generateAddress();
 };

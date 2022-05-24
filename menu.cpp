@@ -1,5 +1,4 @@
 #include "menu.hpp"
-//#include "university.hpp"
 
 void Menu::printStartMenu() const{
     std::system("clear");
@@ -9,8 +8,10 @@ void Menu::printStartMenu() const{
     std::cout << "2. Default database\n";
     std::cout << "--------------------\n";
     std::cout << ":q to exit\n";
+    std::cout << "--------------------\n";
+    std::cout << "--------------------\n";
     std::cout << "Explanation:: If you chose 1. you can add your own name of database,"
-                <<" otherwise the name of database will be \"default\".\n Your choice: ";
+                <<" otherwise the name of database will be \"default\".\nYour choice: ";
 
 }
 
@@ -35,17 +36,17 @@ std::shared_ptr<University> Menu::startMenu(){
             return std::make_shared<University> (ud);
         } 
         else {
-            std::cerr << "Wrong choice. Try again.";
+            std::cout << "Wrong choice. Try again: ";
         }
     }
     return nullptr;
 }
 
-void Menu::printMainMenu() const {
+void Menu::printMainMenu(const std::string & dataBaseName) const {
     std::system("clear");
     std::cout << "xxxxxxxxxxxxxxxxxxxxxxx\n";
     std::cout << "University database\n";
-    //std::cout << u.getName() << '\n';
+    std::cout << "..:: " << dataBaseName << " ::.."<< '\n';
     std::cout << "xxxxxxxxxxxxxxxxxxxxxxx\n";
     std::cout << "1. Read data from file\n";
     std::cout << "2. Write data to file\n";
@@ -75,9 +76,9 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
     if (u)
     {
         std::string ans {};
-        printMainMenu();
+        printMainMenu(u->getName());
         while(std::getline(std::cin,ans) && requestForQuit(ans)){
-            printMainMenu();
+            printMainMenu(u->getName());
             if (!ans.empty() && std::all_of(ans.begin(),
                                              ans.end(),
                                              [](const char c){

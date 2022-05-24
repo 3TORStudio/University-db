@@ -3,8 +3,9 @@ na razie zwraca pierwszy napotkany - zrobione
 2) Konrad pojawia się z nazwiskiem Wasilewska - zrobione
 3) Przegladanie plików do wczytania - zrobione
 4) Sprawdzanie poprawnosci nazwy bazy danych - zrobione
-5) Losowanie adresów
-6) Wyswietlanie nazwy bazy danych w menu
+5) Losowanie adresów - zrobione
+6) Wyswietlanie nazwy bazy danych w menu - zrobione
+7) Generuje tylko studentów
 
 
 #include <iostream>

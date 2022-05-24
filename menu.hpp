@@ -11,7 +11,7 @@ public:
     //bool quit = false;
     bool requestForQuit(std::string ans);
     
-    void printMainMenu() const;
+    void printMainMenu(const std::string & dataBaseName) const;
     void mainMenu(std::shared_ptr<University> u);
     
     void printStartMenu() const;

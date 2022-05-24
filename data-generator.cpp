@@ -176,12 +176,13 @@ std::shared_ptr<Address> DataGenerator::generateAddress(){
 
    // house number
    std::uniform_int_distribution<int> kindOfHouse(0,1);
-   std::uniform_int_distribution<int> houseNumber(1,100);
+   std::uniform_int_distribution<int> houseNum(1,100);
    std::uniform_int_distribution<int> flatNumber(1,150);
 
+
    std::string houseNumber = kindOfHouse(ranEngine)
-                           ? std::to_string(houseNumber(ranEngine))
-                           : std::to_string(houseNumber(ranEngine)) + std::to_string(flatNumber(ranEngine));
+                           ? std::to_string(houseNum(ranEngine))
+                           : std::to_string(houseNum(ranEngine)) + "/" + std::to_string(flatNumber(ranEngine));
    
    // postal code
    input.open("../postalCodes.txt");

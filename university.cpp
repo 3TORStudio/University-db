@@ -31,14 +31,14 @@ bool University::add(){
 }
 
 void  University::printDb(){  
-   system("clear");
    if (personnelBase_.size() == 1){
      std::cout << "The base is empty.\nChose again: ";
    }
    else{
-   std::for_each(std::next(personnelBase_.begin()),
-                 personnelBase_.end(),
-                 [](auto e){e->printPerson();});                
+      system("clear");
+      std::for_each(std::next(personnelBase_.begin()),
+                    personnelBase_.end(),
+                    [](auto e){e->printPerson();});                
    }
    
 }
@@ -171,7 +171,7 @@ bool University::rFromF(){
       }
    }
    if (listOfFiles.empty()){
-      std::cout << "There is no data base files. ";
+      std::cout << "There is no data base files.\n Chose again: ";
       return false;
    }
    std::copy(listOfFiles.begin(),
@@ -291,26 +291,26 @@ universityDb & University::sortBySalary(){
 }
 
 void University::printSt(){
-    system("clear");
    if (personnelBase_.size() == 1){
      std::cout << "The base is empty.\nChose again: ";
    }
    else{
-   std::for_each(std::next(personnelBase_.begin()),
-                 personnelBase_.end(),
-                 [](auto e){if (e->getSalary() != "-1") {e->printPerson();}});
+      system("clear");
+      std::for_each(std::next(personnelBase_.begin()),
+                    personnelBase_.end(),
+                    [](auto e){if (e->getSalary() != "-1") {e->printPerson();}});
    }
 }
 
 void University::printEmp(){
-    system("clear");
    if (personnelBase_.size() == 1){
      std::cout << "The base is empty.\nChose again: ";
    }
    else{
-   std::for_each(std::next(personnelBase_.begin()),
-                 personnelBase_.end(),
-                 [](auto e){if (e->getIndexNumber() != "-1") {e->printPerson();}});
+      system("clear");
+      std::for_each(std::next(personnelBase_.begin()),
+                    personnelBase_.end(),
+                    [](auto e){if (e->getIndexNumber() != "-1") {e->printPerson();}});
    }
 }
 
@@ -346,7 +346,7 @@ void University::generateData(){
          add(std::make_shared<Student>(name,
             surname,
             sex,
-            std::make_shared<Address>("Majowa","3","00-000","Lasek"),
+            dg->generateAddress(),
             pesel,
             salary));
       }
@@ -354,10 +354,11 @@ void University::generateData(){
          add(std::make_shared<Student>(name,
             surname,
             sex,
-            std::make_shared<Address>("Majowa","3","00-000","Lasek"),
+            dg->generateAddress(),
             pesel,
             indexNumber));
       }
    }
+   std::cout << "Done.\n";
    std::cin.ignore(); std::cin.clear();
 }
