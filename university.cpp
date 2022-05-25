@@ -124,11 +124,34 @@ universityDb & University::deleteById(){
       std::string index;
       std::cout << "Index number to delete: ";
       getline(std::cin, index);
-      auto deletedStudent = 
-         std::remove_if(std::next(personnelBase_.begin()),
-                        personnelBase_.end(),
-                        [index](auto student){return student->getIndexNumber() == index;});
-      personnelBase_.erase(deletedStudent, personnelBase_.end());
+      
+      //changing last character of index to upper 
+      *index.rbegin() = std::toupper(*index.rbegin());
+
+      auto result = std::find_if(std::next(personnelBase_.begin()),
+                     personnelBase_.end(),
+                     [index](auto student){return student->getIndexNumber() == index;});
+      
+      if(result == personnelBase_.end()){
+         std::cout << "There is no such index.";
+         return personnelBase_;
+      }
+      
+      char answer = 'n';
+      std::cout << "Do you really want do delete index " << index << " (y/n)? ";
+      std::cin >> answer;
+      answer = tolower(static_cast<int>(answer));
+      if(answer != 'y'){
+         return personnelBase_;
+      }
+
+      // auto deletedStudent = 
+      //    std::remove_if(std::next(personnelBase_.begin()),
+      //                   personnelBase_.end(),
+      //                   [index](auto student){return student->getIndexNumber() == index;});
+      // personnelBase_.erase(deletedStudent, personnelBase_.end());
+      std::cout << "Its time to deleting ....\n";
+      personnelBase_.erase(result);
    }
    return personnelBase_;
 }
