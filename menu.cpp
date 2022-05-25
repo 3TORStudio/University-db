@@ -5,7 +5,7 @@ void Menu::printStartMenu() const{
     std::cout << "Start menu\n";
     std::cout << "--------------------\n";
     std::cout << "1. New database\n";
-    std::cout << "2. Default database\n";
+    std::cout << "2. Read database\n";
     std::cout << "--------------------\n";
     std::cout << ":q to exit\n";
     std::cout << "--------------------\n";
@@ -65,8 +65,9 @@ void Menu::printMainMenu(const std::string & dataBaseName) const {
     std::cout << "11. Find by name\n";
     std::cout << "-----------------------\n";
     std::cout << "12. Delete by Index Number\n";
+    std::cout << "13. Delete by PESEL\n";
     std::cout << "-----------------------\n";
-    std::cout << "13. Generate data\n";
+    std::cout << "14. Generate data\n";
     std::cout << "-----------------------\n";
     std::cout << ":q to exit\n";
     std::cout << "xxxxxxxxxxxxxxxxxxxxxxx\n";
@@ -97,7 +98,8 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
                     case 10: u->findByPESEL(); break;
                     case 11: u->findByName(); break;
                     case 12: u->deleteById(); break;
-                    case 13: u->generateData(); break;
+                    case 13: u->deleteByPesel(); break;
+                    case 14: u->generateData(); break;
                     default: std::cout << "Wrong choice. Try again.\n"; break;
                 }
             } 

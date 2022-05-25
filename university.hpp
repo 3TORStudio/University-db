@@ -42,6 +42,7 @@ public:
     universityDb & sortByPESEL();
     universityDb & sortBySalary();
     universityDb & deleteById();
+    universityDb & deleteByPesel();
     void generateData();
     void salaryModificationByPesel(const std::string & PESEL, const std::string & newSalary);
     bool pToF();

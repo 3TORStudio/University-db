@@ -145,12 +145,37 @@ universityDb & University::deleteById(){
          return personnelBase_;
       }
 
-      // auto deletedStudent = 
-      //    std::remove_if(std::next(personnelBase_.begin()),
-      //                   personnelBase_.end(),
-      //                   [index](auto student){return student->getIndexNumber() == index;});
-      // personnelBase_.erase(deletedStudent, personnelBase_.end());
-      std::cout << "Its time to deleting ....\n";
+      personnelBase_.erase(result);
+   }
+   return personnelBase_;
+}
+
+universityDb & University::deleteByPesel(){
+   if (personnelBase_.size() == 1){
+      std::cout << "The base is empty.\nChose again: ";
+   }
+   else {
+      std::string pesel;
+      std::cout << "PESEL number to delete: ";
+      getline(std::cin, pesel);
+
+      auto result = std::find_if(std::next(personnelBase_.begin()),
+                     personnelBase_.end(),
+                     [pesel](auto student){return student->getPESEL() == pesel;});
+      
+      if(result == personnelBase_.end()){
+         std::cout << "There is no such PESEL.";
+         return personnelBase_;
+      }
+      
+      char answer = 'n';
+      std::cout << "Do you really want do delete PESEL" << pesel << " (y/n)? ";
+      std::cin >> answer;
+      answer = tolower(static_cast<int>(answer));
+      if(answer != 'y'){
+         return personnelBase_;
+      }
+      
       personnelBase_.erase(result);
    }
    return personnelBase_;
