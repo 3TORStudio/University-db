@@ -5,7 +5,10 @@ na razie zwraca pierwszy napotkany - zrobione
 4) Sprawdzanie poprawnosci nazwy bazy danych - zrobione
 5) Losowanie adresów - zrobione
 6) Wyswietlanie nazwy bazy danych w menu - zrobione
-7) Generuje tylko studentów
+7) Generuje tylko studentów - zrobione
+8) Potwierdzenie usunięcia studenta
+9) Usunięcie z potwierdzeniem  osoby po peselu
+10) Pierwsze menu -> nowa czy wczytanie bazy
 
 
 #include <iostream>

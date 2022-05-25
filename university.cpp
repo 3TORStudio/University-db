@@ -298,7 +298,7 @@ void University::printSt(){
       system("clear");
       std::for_each(std::next(personnelBase_.begin()),
                     personnelBase_.end(),
-                    [](auto e){if (e->getSalary() != "-1") {e->printPerson();}});
+                    [](auto e){if (e->getIndexNumber() != "none") {e->printPerson();}});
    }
 }
 
@@ -310,7 +310,7 @@ void University::printEmp(){
       system("clear");
       std::for_each(std::next(personnelBase_.begin()),
                     personnelBase_.end(),
-                    [](auto e){if (e->getIndexNumber() != "-1") {e->printPerson();}});
+                    [](auto e){if (e->getSalary() != "none") {e->printPerson();}});
    }
 }
 
@@ -343,7 +343,7 @@ void University::generateData(){
       std::string salary = dg->generateSalary();
       
       if (isEmployee(ranDev)){
-         add(std::make_shared<Student>(name,
+         add(std::make_shared<Employee>(name,
             surname,
             sex,
             dg->generateAddress(),
