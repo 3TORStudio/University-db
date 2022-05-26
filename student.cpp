@@ -19,13 +19,10 @@ void Student::setIndexNumber(std::string indexNumber){indexNumber_ = indexNumber
 void  Student::printPerson() {
     std::cout << std::string(20,'-') << '\n';
     std::cout << "Index number: " << indexNumber_ << '\n';
-    //std::cout << std::string(20,'-') << '\n';;
     std::cout << "First name: " << getName() << '\n';
     std::cout << "Surname: " << getSurname() << '\n';
-    //std::cout << std::string(20,'-') << '\n';;
     std::cout << "PESEL: " << getPESEL() << '\n';
     std::cout << "Sex: " << getSex() << '\n';
-    //std::cout << std::string(20,'-') << '\n';;
     std::cout << "Adress:\n";
     std::cout << getAddress()->getStreet() << ' ' << getAddress()->getHouseNumber() << '\n';
     std::cout << getAddress()->getPostalCode() << ' ' << getAddress()->getTown() << '\n';

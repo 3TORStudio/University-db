@@ -9,7 +9,6 @@ class Menu {
     bool nameOfNewDatabaseIsNotOk(std::string nameOfNewDatabase);
     
 public:
-    //bool quit = false;
     bool requestForQuit(std::string ans);
     
     void printMainMenu(const std::string & dataBaseName) const;
