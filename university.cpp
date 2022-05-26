@@ -194,7 +194,7 @@ bool University::rFromF(){
       }
    }
    if (listOfFiles.empty()){
-      std::cout << "There is no data base files.\n Chose again: ";
+      std::cout << "There is no data base files.\n";
       return false;
    }
    std::copy(listOfFiles.begin(),
@@ -206,9 +206,10 @@ bool University::rFromF(){
    std:: cin >> nameOfBase;
    std::ifstream input(nameOfBase);
    if (!input.is_open()){
-      std::cerr << "Error!!!";
+      std::cout << "File opening error!!!\n";
       return false;
-   }  
+   }
+   setName(nameOfBase);  
    personnelBase_.clear();
    std::string line;
 
@@ -384,4 +385,8 @@ void University::generateData(){
    }
    std::cout << "Done.\n";
    std::cin.ignore(); std::cin.clear();
+}
+
+void University::setName(std::string name){
+   name_ = name;
 }

@@ -48,4 +48,5 @@ public:
     bool rFromF();
 
     std::string getName(){return name_;};
+    void setName(std::string name);
 };

@@ -9,7 +9,7 @@ na razie zwraca pierwszy napotkany - zrobione
 8) Potwierdzenie usunięcia studenta - zrobione
 8a) nie działa usunięcie .. lol .. - zrobione
 9) Usunięcie z potwierdzeniem  osoby po peselu - zrobione
-10) Pierwsze menu -> nowa czy wczytanie bazy
+10) Pierwsze menu -> nowa czy wczytanie bazy - zrobione
 
 
 #include <iostream>
