@@ -10,6 +10,7 @@ na razie zwraca pierwszy napotkany - zrobione
 8a) nie działa usunięcie .. lol .. - zrobione
 9) Usunięcie z potwierdzeniem  osoby po peselu - zrobione
 10) Pierwsze menu -> nowa czy wczytanie bazy - zrobione
+11) informacje o prawidłowym wczytaniu i zapisaniu do pliku
 
 
 #include <iostream>

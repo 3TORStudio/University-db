@@ -144,13 +144,6 @@ universityDb & University::deleteById(){
       if(answer != 'y'){
          return personnelBase_;
       }
-
-      // auto deletedStudent = 
-      //    std::remove_if(std::next(personnelBase_.begin()),
-      //                   personnelBase_.end(),
-      //                   [index](auto student){return student->getIndexNumber() == index;});
-      // personnelBase_.erase(deletedStudent, personnelBase_.end());
-      std::cout << "Its time to deleting ....\n";
       personnelBase_.erase(result);
    }
    return personnelBase_;
@@ -161,7 +154,7 @@ bool University::pToF(){
       std::cout << "The base is empty.\nChose again: ";
       return false;
    }
-   std::string nameOfBase = getName() + "DataBase.txt";
+   std::string nameOfBase = getName() + ".ud";
    std::ofstream output(nameOfBase);
    if (output.fail()){
       std::cerr << "Error!!!";
@@ -189,7 +182,7 @@ bool University::rFromF(){
    for (const auto& entry : std::filesystem::directory_iterator(pathToShow)) {
       const std::string filenameStr = entry.path().filename().string();
       if (entry.is_regular_file() && 
-          filenameStr.find("DataBase.txt") != std::string::npos) {
+          filenameStr.find(".ud") != std::string::npos) {
           listOfFiles.push_back(filenameStr);
       }
    }
@@ -204,11 +197,15 @@ bool University::rFromF(){
    std::string nameOfBase {};
    std:: cout << "Input the name of file to read: ";
    std:: cin >> nameOfBase;
+   if(nameOfBase.substr(nameOfBase.size()-3,3) != ".ud"){
+      nameOfBase += ".ud";
+   }
    std::ifstream input(nameOfBase);
    if (!input.is_open()){
       std::cout << "File opening error!!!\n";
       return false;
    }
+   nameOfBase.erase(nameOfBase.size()-3,3);
    setName(nameOfBase);  
    personnelBase_.clear();
    std::string line;
