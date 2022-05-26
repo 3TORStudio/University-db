@@ -107,7 +107,7 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
                 }
             } 
             else {
-                std::cout << "No choice. Try again: ";
+                std::cout << "No selection. Try again: ";
             }
         }
     } 

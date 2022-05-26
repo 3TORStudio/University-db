@@ -171,6 +171,7 @@ bool University::pToF(){
              << e->getPESEL() << ';'
              << e->getIndexNumber() << ';' << '\n';
    }
+   std::cout << "Done.\n";
    return true;
 }
 
@@ -197,7 +198,7 @@ bool University::rFromF(){
    std::string nameOfBase {};
    std:: cout << "Input the name of file to read: ";
    std:: cin >> nameOfBase;
-   if(nameOfBase.substr(nameOfBase.size()-3,3) != ".ud"){
+   if(nameOfBase.size() < 3 || nameOfBase.substr(nameOfBase.size()-3,3) != ".ud"){
       nameOfBase += ".ud";
    }
    std::ifstream input(nameOfBase);
@@ -232,7 +233,8 @@ bool University::rFromF(){
                                           vData[8]));
                                           
       vData.clear();
-   } 
+   }
+   std::cout << "Done.\n";
    return true;
 }
 
