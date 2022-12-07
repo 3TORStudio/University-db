@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.11.0)
+cmake_minimum_required(VERSION 3.14)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -6,14 +6,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(University)
 
 set(SRC_LIST
-    address.cpp
-    data-generator.cpp
-    main.cpp
-    menu.cpp
-    person.cpp
-    student.cpp
-    employee.cpp
-    university.cpp
+    src/address.cpp
+    src/data-generator.cpp
+    src/main.cpp
+    src/menu.cpp
+    src/person.cpp
+    src/student.cpp
+    src/employee.cpp
+    src/university.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SRC_LIST})

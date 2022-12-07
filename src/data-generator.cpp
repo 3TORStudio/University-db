@@ -12,13 +12,13 @@ std::string DataGenerator::generateSex(){
 std::string DataGenerator::getSource(const short & num){
    switch(num){
       case 1:
-      return "../female-names.txt";
+      return "../random-data/female-names.txt";
       case 2:
-      return "../female-surnames.txt";
+      return "../random-data/female-surnames.txt";
       case 3:
-      return "../male-names.txt";
+      return "../random-data/male-names.txt";
       case 4:
-      return "../male-surnames.txt";
+      return "../random-data/male-surnames.txt";
    }
    return "";
 }
@@ -157,11 +157,11 @@ std::string DataGenerator::generateSalary(){
 
 std::shared_ptr<Address> DataGenerator::generateAddress(){
    // street
-   std::ifstream input("../streets.txt");
+   std::ifstream input("../random-data/streets.txt");
    if (!input.is_open()){
       std::cout << "Can't open\n";
    }
-   std::uniform_int_distribution<int> numOfStreets(1,countLinesInFile("../streets.txt"));
+   std::uniform_int_distribution<int> numOfStreets(1,countLinesInFile("../random-data/streets.txt"));
    unsigned line = numOfStreets(ranEngine);
    unsigned counter = 0;
 
@@ -183,11 +183,11 @@ std::shared_ptr<Address> DataGenerator::generateAddress(){
                            : std::to_string(houseNum(ranEngine)) + "/" + std::to_string(flatNumber(ranEngine));
    
    // postal code
-   input.open("../postalCodes.txt");
+   input.open("../random-data/postalCodes.txt");
    if (!input.is_open()){
       std::cout << "Can't open\n";
    }
-   std::uniform_int_distribution<int> numOfPostalCodes(1,countLinesInFile("../postalCodes.txt"));
+   std::uniform_int_distribution<int> numOfPostalCodes(1,countLinesInFile("../random-data/postalCodes.txt"));
    line = numOfPostalCodes(ranEngine);
    counter = 0;
    
