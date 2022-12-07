@@ -144,6 +144,7 @@ universityDb & University::deleteById(){
       if(answer != 'y'){
          return personnelBase_;
       }
+<<<<<<< HEAD:university.cpp
 
       personnelBase_.erase(result);
    }
@@ -176,6 +177,8 @@ universityDb & University::deleteByPesel(){
          return personnelBase_;
       }
       
+=======
+>>>>>>> bf33a4ff26e586eea4cf7db583851c0e535d0971:src/university.cpp
       personnelBase_.erase(result);
    }
    return personnelBase_;
@@ -186,7 +189,7 @@ bool University::pToF(){
       std::cout << "The base is empty.\nChose again: ";
       return false;
    }
-   std::string nameOfBase = getName() + "DataBase.txt";
+   std::string nameOfBase = getName() + ".ud";
    std::ofstream output(nameOfBase);
    if (output.fail()){
       std::cerr << "Error!!!";
@@ -203,6 +206,7 @@ bool University::pToF(){
              << e->getPESEL() << ';'
              << e->getIndexNumber() << ';' << '\n';
    }
+   std::cout << "Done.\n";
    return true;
 }
 
@@ -214,12 +218,12 @@ bool University::rFromF(){
    for (const auto& entry : std::filesystem::directory_iterator(pathToShow)) {
       const std::string filenameStr = entry.path().filename().string();
       if (entry.is_regular_file() && 
-          filenameStr.find("DataBase.txt") != std::string::npos) {
+          filenameStr.find(".ud") != std::string::npos) {
           listOfFiles.push_back(filenameStr);
       }
    }
    if (listOfFiles.empty()){
-      std::cout << "There is no data base files.\n Chose again: ";
+      std::cout << "There is no data base files.\n";
       return false;
    }
    std::copy(listOfFiles.begin(),
@@ -229,11 +233,16 @@ bool University::rFromF(){
    std::string nameOfBase {};
    std:: cout << "Input the name of file to read: ";
    std:: cin >> nameOfBase;
+   if(nameOfBase.size() < 3 || nameOfBase.substr(nameOfBase.size()-3,3) != ".ud"){
+      nameOfBase += ".ud";
+   }
    std::ifstream input(nameOfBase);
    if (!input.is_open()){
-      std::cerr << "Error!!!";
+      std::cout << "File opening error!!!\n";
       return false;
-   }  
+   }
+   nameOfBase.erase(nameOfBase.size()-3,3);
+   setName(nameOfBase);  
    personnelBase_.clear();
    std::string line;
 
@@ -259,7 +268,8 @@ bool University::rFromF(){
                                           vData[8]));
                                           
       vData.clear();
-   } 
+   }
+   std::cout << "Done.\n";
    return true;
 }
 
@@ -409,4 +419,8 @@ void University::generateData(){
    }
    std::cout << "Done.\n";
    std::cin.ignore(); std::cin.clear();
+}
+
+void University::setName(std::string name){
+   name_ = name;
 }

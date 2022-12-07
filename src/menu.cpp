@@ -5,14 +5,10 @@ void Menu::printStartMenu() const{
     std::cout << "Start menu\n";
     std::cout << "--------------------\n";
     std::cout << "1. New database\n";
-    std::cout << "2. Read database\n";
+    std::cout << "2. Read database from file\n";
     std::cout << "--------------------\n";
     std::cout << ":q to exit\n";
     std::cout << "--------------------\n";
-    std::cout << "--------------------\n";
-    std::cout << "Explanation:: If you chose 1. you can add your own name of database,"
-                <<" otherwise the name of database will be \"default\".\nYour choice: ";
-
 }
 
 std::shared_ptr<University> Menu::startMenu(){
@@ -33,6 +29,15 @@ std::shared_ptr<University> Menu::startMenu(){
         } 
         else if(choice == "2"){
             University ud("UniversityDefault");
+            if(!ud.rFromF()){
+                std::cout << "The name of new database: ";
+                std::cin >> nameOfNewDatabase;
+                while(nameOfNewDatabaseIsNotOk(nameOfNewDatabase)){
+                    std::cout << "\nWrong name. Try again: ";
+                    std::cin >> nameOfNewDatabase;
+                }
+                ud.setName(nameOfNewDatabase);
+            }
             return std::make_shared<University> (ud);
         } 
         else {
@@ -104,7 +109,7 @@ void Menu::mainMenu(std::shared_ptr<University> u) {
                 }
             } 
             else {
-                std::cout << "No choice. Try again: ";
+                std::cout << "No selection. Try again: ";
             }
         }
     } 
