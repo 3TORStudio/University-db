@@ -144,8 +144,6 @@ universityDb & University::deleteById(){
       if(answer != 'y'){
          return personnelBase_;
       }
-<<<<<<< HEAD:university.cpp
-
       personnelBase_.erase(result);
    }
    return personnelBase_;
@@ -177,8 +175,6 @@ universityDb & University::deleteByPesel(){
          return personnelBase_;
       }
       
-=======
->>>>>>> bf33a4ff26e586eea4cf7db583851c0e535d0971:src/university.cpp
       personnelBase_.erase(result);
    }
    return personnelBase_;
