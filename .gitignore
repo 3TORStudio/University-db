@@ -15,3 +15,6 @@
 build/
 .vscode
 .gitignore
+
+#binary files
+bin/
