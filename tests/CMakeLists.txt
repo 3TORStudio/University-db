@@ -13,4 +13,7 @@ include(GoogleTest)
 
 # subdirectories with tests
 add_subdirectory(PersonTests)
+add_subdirectory(AddressTest)
+add_subdirectory(StudentTest)
+add_subdirectory(EmployeeTest)
     

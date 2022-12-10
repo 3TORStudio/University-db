@@ -5,7 +5,6 @@
 #include <iostream>
 #include <memory>
 #include <string>
-
 class Person{
    std::string name_;
    std::string surname_;
