@@ -12,7 +12,7 @@ class Person{
    std::shared_ptr<Address> address_;
    std::string PESEL_;
 protected:
-   static bool isPeselCorrect(std::string);
+   bool isPeselCorrect(std::string);
 public:
    Person(std::string name,
           std::string surname,

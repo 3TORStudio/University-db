@@ -11,7 +11,6 @@ Person::Person(std::string name,
           , address_(address)
 {
     if (!isPeselCorrect(PESEL)){
-        //std::cerr << "PESEL incorect!\n";
         setPESEL("00000000000");
     }
     else{

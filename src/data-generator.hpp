@@ -15,7 +15,7 @@ public:
     std::string generatePesel(const std::string & sex);
     std::string generateSex();
     std::string generateIndexNumber();
-    std::string getAddress();
+    //std::string getAddress();
     std::string generateSalary();
     std::shared_ptr<Address> generateAddress();
 };
