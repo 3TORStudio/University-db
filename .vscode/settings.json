@@ -75,7 +75,14 @@
         "__functional_base": "cpp",
         "iomanip": "cpp",
         "stack": "cpp",
-        "codecvt": "cpp"
+        "codecvt": "cpp",
+        "__tree": "cpp",
+        "any": "cpp",
+        "condition_variable": "cpp",
+        "forward_list": "cpp",
+        "map": "cpp",
+        "thread": "cpp",
+        "unordered_set": "cpp"
     },
     "editor.fontSize": 13,
     "editor.minimap.enabled": false

@@ -11,7 +11,7 @@ Person::Person(std::string name,
           , address_(address)
 {
     if (!isPeselCorrect(PESEL)){
-        std::cerr << "PESEL incorect!\n";
+        //std::cerr << "PESEL incorect!\n";
         setPESEL("00000000000");
     }
     else{
@@ -29,9 +29,12 @@ std::string const Person::getSex() { return sex_; }
 
 void Person::setName(std::string name){name_ = name;}
 void Person::setSurname(std::string surname){surname_ = surname;}
-void Person::setPESEL(std::string PESEL){PESEL_ = PESEL;}
 void Person::setSex(std::string sex){sex_ = sex;}
 void Person::setAddress(std::shared_ptr<Address> address){address_ = address;}
+void Person::setPESEL(std::string PESEL){
+    PESEL_ = isPeselCorrect(PESEL) ? PESEL : "00000000000";
+}
+
 bool Person::isPeselCorrect(std::string pesel){
     if(pesel.size() != 11){
         return false;
