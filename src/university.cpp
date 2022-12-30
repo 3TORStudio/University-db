@@ -15,6 +15,7 @@ bool University::add(std::shared_ptr<Person> person){
    return true;
 }
 
+
 bool University::add(){
    std::cout << "Chose 'e' for adding employee.\n";
    char a;
@@ -419,4 +420,8 @@ void University::generateData(){
 
 void University::setName(std::string name){
    name_ = name;
+}
+
+int University::getNumberOfPeople(){
+   return personnelBase_.size() - 1;
 }

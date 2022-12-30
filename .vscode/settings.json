@@ -85,5 +85,6 @@
         "unordered_set": "cpp"
     },
     "editor.fontSize": 13,
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "cmake.configureOnOpen": false
 }

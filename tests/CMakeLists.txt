@@ -17,4 +17,5 @@ add_subdirectory(AddressTest)
 add_subdirectory(StudentTest)
 add_subdirectory(EmployeeTest)
 add_subdirectory(DataGeneratorTest)
+add_subdirectory(UniversityTest)
     

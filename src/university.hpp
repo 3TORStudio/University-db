@@ -30,6 +30,8 @@ class University
 public:
     University(std::string name);
 
+    int getNumberOfPeople();
+    
     bool add(std::shared_ptr<Person> person);
     bool add();
 
